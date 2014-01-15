@@ -1,0 +1,75 @@
+    {% if settings.enable_featuredproduct %}
+
+    <!-- if store has no products -->
+    <div class="note helper-note">
+      <h3>Add a product to the {{ collections[settings.frontpage_collection].title }} collection</h3> 
+      <p>It takes less than a minute to <a href="/admin/products">add your first product</a> to your store. Make sure you add it to the <strong>{{ collections[settings.frontpage_collection].title }}</strong> collection.</p>
+      <p class="p0">You can also replace this featured product area with a slideshow banner in your <a href="/admin/themes/current/settings">Theme Settings</a>.</p>
+    </div>
+
+    <div class="helper-content clearfix">
+      <div class="display-table featured-product span12">
+        <div class="p30">
+          <div class="display-table-cell">
+            <h2>Example Featured Product</h2>
+            <span class="price">
+              $0.00
+            </span>
+            <div class="featured-product-description">
+              <p>Your store is looking a little empty! This placeholder will appear until you add your first product. You can also replace this featured product area with a slideshow banner in your Theme Settings.</p>
+            </div>
+            <a class="btn" href="admin/products">View Product</a>
+          </div>
+          <div class="display-table-cell featured-product-image">
+            <div class="sample-product-wrapper">
+              <div class="sample-product" style="height:300px">This is where your product image will appear<br />when you add your first product.</div>
+            </div>
+          </div>
+        </div><!-- p30 -->
+      </div><!-- display table -->
+    {% endif %}
+      
+    {% if collections[settings.frontpage_collection] != blank %}
+      <div class="product span4">
+        <div class="image">
+          <div class="sample-product-wrapper">
+            <div class="sample-product">Product image</div>
+          </div>
+        </div>
+        <div class="details">
+          <h4 class="title">Example Product title </h4>
+          <span class="price">
+            {{ '0.00' | money }}
+          </span>
+        </div>
+      </div>
+    
+      <div class="product span4 ">
+        <div class="image">
+          <div class="sample-product-wrapper">
+            <div class="sample-product">Product image</div>
+          </div>
+        </div>
+        <div class="details">
+          <h4 class="title">Example Product title </h4>
+          <span class="price">
+            {{ '0.00' | money }}
+          </span>
+        </div>
+      </div>
+      <div class="product span4">
+        <div class="image">
+          <div class="sample-product-wrapper">
+            <div class="sample-product">Product image</div>
+          </div>
+        </div>
+        <div class="details">
+          <h4 class="title">Example Product title </h4>
+          <span class="price">
+            {{ '0.00' | money }}
+          </span>
+        </div>
+      </div>
+      <div class="span12 border-bottom p30"></div>
+      {% endif %}
+  </div><!-- helper-content -->
