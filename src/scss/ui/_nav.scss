@@ -1,0 +1,70 @@
+/* =============================================================================
+   Navigation
+========================================================================== */
+
+.menu--primary {
+
+    li {
+        display: inline-block;
+        margin:0 .25em;
+        vertical-align: middle;
+
+        + li {
+            margin-right: 0;
+        }
+    }
+}
+
+/* ==|== Menu =================
+   Links
+====================================== */
+
+.menu__link {
+  
+
+    &:hover {
+       
+    }
+
+    &:active,
+    &:focus {
+      
+    }
+}
+
+.menu__link--active {
+    
+
+    &:hover,
+    &:active,
+    &:focus {
+       
+
+    }
+}
+
+.js--white {
+    .menu--primary {
+        .menu__link {
+           
+            &:hover {
+               
+            }
+
+            &:active,
+            &:focus {
+               
+            }
+        }
+        .menu__link--active {
+            
+
+            &:hover,
+            &:active,
+            &:focus {
+               
+
+            }
+        }
+    }
+}

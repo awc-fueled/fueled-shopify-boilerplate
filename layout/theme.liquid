@@ -1,13 +1,10 @@
+
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
 <!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8 oldie" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-
-  {% if settings.display_favicon %}
-  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
-  {% endif %}
   <meta charset="utf-8" />
   <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
 
@@ -43,7 +40,7 @@
   
   {{ content_for_header }}
   
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+  {{ 'http://code.jquery.com/jquery-latest.min.js' | script_tag }}
   {{ 'jquery-migrate-1.2.0.min.js' | asset_url | script_tag }}
   
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
@@ -58,105 +55,68 @@
 </head>
 
 <body>
-  
-  <!-- Begin toolbar -->
-  <div class="toolbar-wrapper wrapper">
-    <div class="toolbar span12 clearfix">
-        <ul class="unstyled">
-          {% if settings.display_search %}
-          <li class="search-field fl">
-            <form class="search" action="/search">
-              <input type="image" src="{{ 'icon-search.png' | asset_url }}" alt="Go" id="go">
-              <input type="text" name="q" class="search_box" placeholder="Search" value="{{ search.terms }}"  />
-            </form>
-          </li>
-          {% endif %}
-          <li id="cart-target" class="toolbar-cart {% if cart.item_count != 0 %}has-items{% endif %}">
-            <a href="/cart" class="cart" title="Shopping Cart">
-              <span class="icon-cart"></span>
-              <span id="cart-count">{{ cart.item_count }}</span>
-              Cart
-            </a>
-          </li>         
-          {% include 'customer-links' %}
-        </ul>
-    </div>
-  </div>
-  <!-- End toolbar -->
-  
-  <!-- Begin wrapper -->
-  <div id="transparency" class="wrapper clearfix">
-    <div class="row p0">      
-
-      <!-- Begin navigation -->
-      {% if settings.logo_alignment == "center" %}
-
-        <div class="span12 clearfix">
-          <div class="logo">
-            {% if settings.use_logo %}
-            <h1><a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></a></h1>
-            {% if template == 'index' %}
-            <h1 style="display:none"><a href="/">{{ shop.name }}</a></h1>
-            {% endif %}
-            {% else %}
-            <h1><a href="/">{{ shop.name }}</a></h1>
-            {% endif %}
-          </div> 
-        </div> 
-        <section id="nav" class="row p30">
-          <div class="span12">
-            <nav class="main">
-              {% include 'dropdown' %}
-            </nav> <!-- /.main -->
-            <nav class="mobile clearfix">
-              {% include 'mobile-menu' %}
-            </nav> <!-- /.mobile --> 
-          </div> 
-        </section> 
-
-      {% else %}
-
-        <div class="row" id="header">
-          <div class="span12 border-bottom nav-table">
-            <div class="nav-logo">
-              <div class="logo">
-                {% if settings.use_logo %}
-                <h1><a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></a></h1>
-                {% if template == 'index' %}
-                <h1 style="display:none"><a href="/">{{ shop.name }}</a></h1>
-                {% endif %}
-                {% else %}
-                <h1><a href="/">{{ shop.name }}</a></h1>
-                {% endif %}
-              </div> 
-            </div> 
-            
-            <div class="nav-links">
-              <section id="nav">
-                <nav class="main">
-                  {% include 'dropdown' %}
-                </nav> 
-                <nav class="mobile clearfix">
-                  {% include 'mobile-menu' %}
-                </nav>
-                </section> 
-            </div> 
-          </div> 
-        </div> 
-
-      {% endif %}
-      <!-- End navigation -->
-      
+    <header class="masthead">
+        <div class="masthead__inner">
+            <div class="group clearfix">
+                <div class="left">
+                    <a href="/" class="masthead__logo">
+                        <span class="visuallyhidden">{{ shop.name }}</span>
+                        <div>
+                             <h1><a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></a></h1>
+                        </div>
+                    </a>
+                </div><!-- .left -->
+                <div class="right">
+                    <nav class="menu--primary" role="navigation">
+                        <ul>
+                            <!-- Start Link Generator -->
+                            {% for link in linklists.main-menu.links %}
+                              {% if linklists[link.handle] == empty %}
+                              <li>
+                                <a href="{{ link.url }}" class="{% if link.active %} current{% endif %}">
+                                  <span>{{ link.title }}</span></a>
+                              </li>
+                              {% else %}
+                              <li class=""><a href="{{ link.url }}" class="{% if link.active %} current{% endif %}">
+                                <span>{{ link.title }}</span></a>
+                                <ul class="">
+                                  {% for l in linklists[link.handle].links %}
+                                  <li><a href="{{ l.url }}"{% if l.active %} class="current"{% endif %}>{{ l.title }}</a></li>
+                                  {% endfor %}
+                                </ul>
+                              </li>
+                              {% endif %}
+                            {% endfor %}
+                            <!-- End Link Generator -->
+                            <li>
+                                <a href="/cart"  title="Shopping Cart">
+                                  <span ></span>
+                                  <span >{{ cart.item_count }}</span>
+                                  Cart
+                                </a>
+                            </li>         
+                              {% include 'customer-links' %}
+                        </ul>
+                        <!-- <span class="icon__container icon__container--menu js--toggle-menu">
+                            <span class="icon icon--menu">
+                                <span class="visuallyhidden">Toggle Menu Visibility</span>
+                            </span>
+                        </span> -->
+                    </nav>
+                </div><!-- .right -->
+            </div><!-- .group -->
+        </div><!-- .masthead__inner -->
+    <main class="group">    
       <!-- Begin content-->
-      <section id="content" class="clearfix">
+      <section >
           {% if template == "list-collections" %}
-          <div id="collection" class="row">
-            <div class="span12">
+          <div  >
+            <div >
               <h1><span>Product Collections</span></h1>
             </div> <!-- /.span12 -->
           </div> <!-- /.row -->
           
-          <div class="row products masonry">
+          <div >
             {% for collection in collections %}
             {% unless collection.all_products_count == 0 or collection.handle == "frontpage" %}
             {% include 'collection-loop' %}
@@ -169,30 +129,21 @@
       </section>
       <!-- End content-->
       
-    </div>
-  </div>
+    </main>
   <!-- End wrapper -->
   
   <!-- Begin footer -->
-  <div class="footer-wrapper wrapper">
+  <div >
     <footer>
-      <div class="row">
-
-        <div class="span12 full-border"></div>
-        
-        {% capture footer_columns %}{% if settings.footer_display_blog %}+{% endif %}{% if settings.footer_display_navigation %}+{% endif %}{% if settings.footer_display_newsletter %}+{% endif %}{% if settings.footer_display_social %}+{% endif %}{% endcapture %}
-        {% if footer_columns.size == 1 %}{% assign footer_span_size = 'span12' %}{% endif %}
-        {% if footer_columns.size == 2 %}{% assign footer_span_size = 'span6' %}{% endif %}
-        {% if footer_columns.size == 3 %}{% assign footer_span_size = 'span4' %}{% endif %}
-        {% if footer_columns.size == 4 %}{% assign footer_span_size = 'span3' %}{% endif %}
+      <div class="group grid">
 
         <!-- Begin latest blog post -->
         {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
-        <div class="{{ footer_span_size }}">
+        <div class="col col--4">
           {% assign article = blogs.news.articles.first %}
-          <div class="p30">
+          <div >
             <h4>{{ settings.footer_blog_post_header }}</h4>
-            <p class="p10"><strong>{{ article.title | link_to: article.url }}</strong></p>
+            <p ><strong>{{ article.title | link_to: article.url }}</strong></p>
             <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
           </div>
         </div>
@@ -201,9 +152,9 @@
         
         {% if settings.footer_display_navigation and linklists.footer.links.size > 0 %}
         <!-- Begin footer navigation -->
-        <div class="{{ footer_span_size }} footer-menu">          
+        <div class="col col--4">          
           <h4>{{ settings.footer_linklist_title }}</h4>
-          <ul class="unstyled">
+          <ul class="list--inline">
             {% for link in linklists.footer.links %}
               <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
             {% endfor %}
@@ -215,11 +166,11 @@
         
         {% if settings.footer_display_newsletter %}
         <!-- Begin newsletter -->
-          <div class="{{ footer_span_size }}">
-            <div class="p30">
+          <div class="col col--4">
+            <div>
               <h4>{{ settings.footer_newsletter_title }}</h4>
-              <form action="{{ settings.mailing_list_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                <input type="email" value="" placeholder="Email Address" name="EMAIL" id="mail" /><input type="submit" class="btn newsletter" value="Subscribe" name="subscribe" id="subscribe" />
+              <form action="{{ settings.mailing_list_form_action }}" method="post"  name="mc-embedded-subscribe-form" target="_blank">
+                <input type="email" value="" placeholder="Email Address" name="EMAIL"  /><input type="submit" class="btn newsletter" value="Subscribe" name="subscribe"  />
               </form>
             </div>
           </div>
@@ -228,7 +179,7 @@
           
         {% if settings.footer_display_social %}
         <!-- Begin social -->
-          <div class="{{ footer_span_size }}">
+          <div class="col col--3">
             <h4>{{ settings.footer_social_title }}</h4>
             {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter">Twitter</a>{% endif %}
             {% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook">Facebook</a>{% endif %}
@@ -244,8 +195,8 @@
         {% endif %}
         
         <!-- Begin copyright -->
-        <div class="span12 tc copyright clear">
-          <ul class="credit-cards p10 clearfix">
+        <div>
+          <ul class="list--inline">
             {% if settings.accept_visa %}<li><img src="{{ 'icon-cc-visa.png' | asset_url }}" alt="Visa" /></li>{% endif %}
             {% if settings.accept_mastercard %}<li><img src="{{ 'icon-cc-mastercard.png' | asset_url }}" alt="MasterCard" /></li>{% endif %}
             {% if settings.accept_amex %}<li><img src="{{ 'icon-cc-amex.png' | asset_url }}" alt="Amex" /></li>{% endif %}
@@ -255,7 +206,7 @@
             {% if settings.accept_bitcoin %}<li><img src="{{ 'icon-cc-bitcoin.png' | asset_url }}" alt="Bitcoin" /></li>{% endif %}
 
           </ul> <!-- /.credit-cards -->
-          <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }} | {{ powered_by_link }}</p>
+          <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
         </div>
         <!-- End copyright -->
 
@@ -267,7 +218,7 @@
   {{ 'jquery.flexslider-min.js' | asset_url | script_tag }}
 
   {% if settings.enable_product_image_zoom %}
-    {{ 'jquery.zoom.js' | asset_url | script_tag }}
+  {{ 'jquery.zoom.js' | asset_url | script_tag }}
   {% endif %}
   {{ 'jquery.tweet.js' | asset_url | script_tag }}
   {{ 'jquery.fancybox.js' | asset_url | script_tag }}
