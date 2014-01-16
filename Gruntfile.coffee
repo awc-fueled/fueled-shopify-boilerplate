@@ -6,36 +6,13 @@ module.exports = (grunt) ->
 
     files:
       grunt:     ['gruntfile.js']
-      css:       ['assets/styles.css.liquid', 'assets/screen.prefixed.css']
+      css:       ['assets/*.css', 'assets/*.css.liquid']
       scss:      ['src/scss/**/*.scss']
       js:        ['src/js/vendor/**/*.js', 'src/js/custom/**/*.js'] #(if we need liquid templating), 'src/js/**/*.js.liquid', 'assets/**/*.js.liquid']
       coffee:    ['src/js/coffee/**/*.coffee', 'src/js/coffee/**/*.coffee.liquid']
       img:       ['src/images/**/*.{png,jpeg,svg,jpg,gif}', 'src/images/*.{png,jpeg,svg,jpg,gif}']
 
-# Image Processing
-    smushit:
-      path:
-        src: '<%= files.img %>'  #recursively replace minified images
-        dest: 'assets'
-
-# Concatenation Processing
-    concat:
-      css:
-        src: ['<%= files.css %>']
-        dest: 'assets/z.styles.concat.css.liquid'
-
-      js:
-        src: ['<%= files.js %>']
-        dest: 'src/js/concat/z.scripts.concat.js'
-
-# Autoprefixer Processing - the absolute tits
-    autoprefixer:
-      options:
-        browser: ['last 2 versions']
-
-      single_file:
-        src: 'assets/screen.css'
-        dest: 'assets/screen.prefixed.css'
+# tasks are listed in the order in wich they are proccesed. Expections are noted. 
 
 # JavaScript Processing
     coffee:
@@ -46,10 +23,8 @@ module.exports = (grunt) ->
         dest: 'src/js/custom'
         ext: '.js'
 
-    uglify:
-      dist:
-        src: ['src/js/concat/z.scripts.concat.js']
-        dest: 'assets/scripts.min.js'
+    # resulting js files and other custom js files are concatonated with concat:js and placed in.
+    # 'src/js/concat/z.scripts.concat.js' for further processing.
 
     jshint:
       files: ['<%= files.grunt %>', 'src/js/z.scripts.concat.js']
@@ -75,29 +50,55 @@ module.exports = (grunt) ->
         undef: true
         unused: false
 
-
+    uglify:
+      dist:
+        src: ['src/js/concat/z.scripts.concat.js']
+        dest: 'assets/scripts.min.js'
 
 # CSS Processing
     compass:
       dist:
         options:
           sassDir: 'src/scss'
-          cssDir: 'assets'
+          cssDir: 'src/scss/css'
           imagesDir: 'assets'
           javascriptsDir: 'assets'
           outputStyle: 'expanded'
 
+    # Autoprefixer Processing - the absolute tits
+    autoprefixer:
+      options:
+        browser: ['last 2 versions']
+      multiple_files:
+        expand: true
+        flatten: true
+        src: 'src/scss/css/*.css', # -> src/css/file1.css, src/css/file2.css
+        dest: 'src/scss/prefix/' # -> dest/css/file1.css, dest/css/file2.css
+
+    # concat:css runs. 
+
     cssmin:
       minify:
-        src: 'assets/z.styles.concat.css.liquid'
+        src: 'src/scss/concat/z.styles.concat.css'
         dest: 'assets/styles.min.css.liquid'
+
+
+# Concatenation Processing
+    concat:
+      css:
+        src: ['src/scss/prefix/*.css']
+        dest: 'src/scss/concat/z.styles.concat.css'
+
+      js:
+        src: ['<%= files.js %>']
+        dest: 'src/js/concat/z.scripts.concat.js'
 
 # Shell Commands
     shell:
       touchCSS:
         command: [
                     'sleep 0.3',
-                    'touch assets/z.styles.concat.css.liquid'
+                    'touch assets/styles.min.css.liquid'
                 ].join('&&')
 
 # watch tasks
@@ -113,8 +114,28 @@ module.exports = (grunt) ->
             ]
       tasks: ['default']
 
+# MSC Tasks
+# Clean Task
+    clean: 
+      assets:
+        src: ['assets/*.*']
+      scss:
+        src: ['src/scss/concat/*.*', 'src/scss/prefix/*.*']
+      css:
+        src: ['src/scss/css/*.*']
+      js:
+        src: ['src/js/concat/*.*']
+
+
+# Image Processing
+    smushit:
+      path:
+        src: '<%= files.img %>'  #recursively replace minified images
+        dest: 'assets'
+
+
 # Use matchdep to register all tasks dynamicaly form package.json file.
- require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
 
 # Default task.
@@ -130,8 +151,8 @@ module.exports = (grunt) ->
                       'shell'
                     ]
 
-# Minify task
-
 # Run the default task then losslessly minify images with Yahoo!'s Smush-It
-
   grunt.registerTask 'minify', ['default', 'smushit']
+
+# Clear task
+  grunt.registerTask 'clear', ['clean']

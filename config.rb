@@ -24,9 +24,9 @@ javascripts_dir = "assets"
 # and then run:
 # sass-convert -R --from scss --to sass assets/sass scss && rm -rf sass && mv scss sass
 
-on_stylesheet_saved do |filename|
-  s = filename + ".liquid"
-  puts "copying to: " + s
-  FileUtils.cp(filename, s)
-  puts "removing: " + filename
-end
+# on_stylesheet_saved do |filename|
+#   s = filename + ".liquid"
+#   puts "copying to: " + s
+#   FileUtils.cp(filename, s)
+#   puts "removing: " + filename
+# end
