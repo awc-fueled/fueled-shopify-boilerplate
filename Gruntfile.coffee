@@ -53,7 +53,7 @@ module.exports = (grunt) ->
     uglify:
       dist:
         src: ['src/js/concat/z.scripts.concat.js']
-        dest: 'assets/scripts.min.js'
+        dest: 'assets/scripts.min.js.liquid'
 
 # CSS Processing
     compass:
@@ -97,10 +97,11 @@ module.exports = (grunt) ->
     shell:
       touchCSS:
         command: [
-                    'sleep 0.4 ',
+                    'sleep 0.2 ',
+                    'touch assets/scripts.min.js.liquid',
+                    'sleep 0.2 ',
                     'touch assets/styles.min.css.liquid',
-                    'sleep 0.3 ',
-                    'touch assets/scripts.min.js',
+                    
                 ].join(' && ')
 
 # watch tasks

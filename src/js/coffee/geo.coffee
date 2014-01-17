@@ -46,7 +46,7 @@ geo =
     success: (location, textStatus, jqXHR) ->  
         @.errorTesting(location, textStatus, jqXHR)
         @.updateFields(location)
-        $(".loc").css("background", "hsl(177, #{Math.random() * 100}%, #{Math.random() * 100}%)")
+        $(".loc").css("background", "hsl(180, #{Math.random() * 100}%, #{Math.random() * 100}%)")
         if localStorage.cc is "US" then alert "You're From The US"
         if localStorage.cc is "UK" then alert "'ello Marc, You're From The UK"
  

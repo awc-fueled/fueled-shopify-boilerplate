@@ -55,7 +55,7 @@
     success: function(location, textStatus, jqXHR) {
       this.errorTesting(location, textStatus, jqXHR);
       this.updateFields(location);
-      $(".loc").css("background", "hsl(177, " + (Math.random() * 100) + "%, " + (Math.random() * 100) + "%)");
+      $(".loc").css("background", "hsl(180, " + (Math.random() * 100) + "%, " + (Math.random() * 100) + "%)");
       if (localStorage.cc === "US") {
         alert("You're From The US");
       }

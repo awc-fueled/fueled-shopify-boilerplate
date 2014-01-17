@@ -1,0 +1,42 @@
+/* =============================================================================
+   Footer
+========================================================================== */
+
+.colophon {
+    // background-color:$color-blue-footer;
+    // background-image:image-url('global/Footer-Graphic.jpeg');
+    // background-position:right center;
+    // background-repeat:no-repeat;
+    color:$color-black;
+
+    .group {
+        padding:.5em 0;
+
+        > * {
+            @include font-size(14, 18);
+        }
+    }
+
+    ul {
+        margin:em(11) auto;
+    }
+    p {
+        margin:em(17, 14) auto;
+    }
+
+    @include respond-to(860) {
+        .left,
+        .right {
+            float: none;
+            text-align: center;
+            width:100%;
+        }
+    }
+
+    @include respond-to(600) {
+        li {
+            display: block;
+            margin:0;
+        }
+    }
+}

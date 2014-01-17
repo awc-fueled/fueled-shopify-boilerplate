@@ -15,7 +15,7 @@
   {% if page_description %}
   <meta name="description" content="{{ page_description }}" />
   {% endif %}
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <link rel="canonical" href="{{ canonical_url }}" /> 
@@ -50,6 +50,8 @@
   {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
   {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
   {% endif %}
+  <script type="text/javascript" charset="utf-8"
+      src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
   {{ 'scripts.min.js' | asset_url | script_tag }}
   
 </head>
@@ -135,7 +137,7 @@
   <!-- Begin footer -->
   <div >
     <footer>
-      <div class="group grid">
+      <div class="colophon group grid">
 
         <!-- Begin latest blog post -->
         {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
