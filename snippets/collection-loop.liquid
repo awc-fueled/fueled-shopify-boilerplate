@@ -1,26 +1,21 @@
-<div class="product span4">
-  
-  <!-- Begin product image -->
-  <div class="image">
-    <a href="{{ collection.url }}">
-      {% if collection.image %}
-        <img src="{{ collection.image.src | collection_img_url: 'large' }}" alt="{{ collection.image.alt }}" />
-      {% else %}
-        <img src="{{ collection.products.first.featured_image | product_img_url: 'large' }}" alt="{{ collection.title | escape  }}" />
-      {% endif %}
-    </a>
-  </div>
-  <!-- End product image -->
-  
-  <!-- Begin product description -->
-  <div class="details">
-    <a href="{{ collection.url }}" class="clearfix">
-      <h4 class="title">{{ collection.title }}</h4>
-      <span class="price">{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'Product', 'Products' }}</span>
-    </a>
-  </div>
+{% if forloop.first == false %}-->{% endif %}<article class="col col--4">
+    <div class="">
+        <a href="{{ collection.url }}">
+        {% if collection.image %}
+            <img src="{{ collection.image.src | collection_img_url: 'large' }}" alt="{{ collection.image.alt }}" />
+                {% else %}
+            <img src="{{ collection.products.first.featured_image | product_img_url: 'large' }}" alt="{{ collection.title | escape  }}" />
+        {% endif %}
+        </a>
+    </div><!-- product image -->
+ 
+    <div class="">
+        <a href="{{ collection.url }}" class="clearfix">
+            <h4 class="title">{{ collection.title }}</h4>
+            <span class="price">{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'Product', 'Products' }}</span>
+        </a>
+    </div>
   <!-- End product description -->
-  
-</div>
+  </article><!--
 
 {% cycle 'clear-collection-list': '', '', '<div style="clear:both;"></div>' %}

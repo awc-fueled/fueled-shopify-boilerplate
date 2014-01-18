@@ -1,0 +1,64 @@
+/* =============================================================================
+   Icons
+========================================================================== */
+
+/* ==|== Icon =================
+   Menu
+====================================== */
+
+.icon--menu {
+    border-color:$color-white;
+    border-style:solid;
+    border-width:2px 0;
+    display: block;
+    height:16px;
+    position: relative;
+    @include transition(all .25s cubic-bezier(#{$bezier-nice}));
+    width:24px;
+
+    &:before {
+        border-color:inherit;
+        border-style:solid;
+        border-width:2px 0 0;
+        content:"";
+        height:2px;
+        left:0;
+        margin-top: -1px;
+        position: absolute;
+        right:0;
+        top:50%;
+    }
+
+    .js--sticky & {
+        border-color:$color-blue;
+    }
+
+    @include respond-to(900) {
+        border-color:$color-blue;
+    }
+}
+
+.js--toggle-menu {
+    cursor:pointer;
+    padding:14px 10px;
+}
+
+.js--visible .icon--menu {
+    @include rotate(90deg);
+}
+
+.no-touch {
+    .js--toggle-menu {
+        &:hover {
+            .icon--menu {
+                border-color:$color-blue;
+            }
+        }
+        &:active,
+        &:focus {
+            .icon--menu {
+                border-color:$color-green;
+            }
+        }
+    }
+}

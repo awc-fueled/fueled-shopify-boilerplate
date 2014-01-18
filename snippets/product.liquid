@@ -1,25 +1,23 @@
-<div id="product" class="{{ product.handle }}">
+<section class="group {{ product.handle }}">
   
-  <div class="row clearfix">
+    <div class="clearfix">
     
     {% if template != 'index' %}
-    <!-- Begin breadcrumb -->
-    <div class="span12">
-      <div class="breadcrumb clearfix">
-        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
-        <span class="arrow-space">&#62;</span>
-        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-          {% if collection %}
-            <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title }}</a>
-          {% else %}
-            <a href="/collections/all" title="All Products">Products</a>
-          {% endif %}
-        </span>
-        <span class="arrow-space">&#62;</span>
-        <strong>{{ product.title }}</strong>
-      </div>
-    </div>
-    <!-- End breadcrumb -->
+        <div class="">
+            <div class="breadcrumb clearfix">
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+                <span class="arrow-space">&#62;</span>
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    {% if collection %}
+                        <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title }}</a>
+                    {% else %}
+                        <a href="/collections/all" title="All Products">Products</a>
+                    {% endif %}
+                </span>
+                <span class="arrow-space">&#62;</span>
+                <strong>{{ product.title }}</strong>
+            </div>
+        </div><!-- End breadcrumb -->
     {% endif %}
     
     <!-- Begin product photos -->
@@ -115,12 +113,6 @@
               {% endunless %}
             </div>
           </div>
-
-
-
-
-
-
         </div>
         <!-- End product options -->
 
@@ -146,7 +138,7 @@
     {% include 'related-products' %}
   {% endif %}
   
-</div> 
+</section> 
 
 <div style="display:none" id="preloading">
 {% for image in product.images offset: 1 %}

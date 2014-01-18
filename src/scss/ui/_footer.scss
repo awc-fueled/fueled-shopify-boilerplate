@@ -3,26 +3,9 @@
 ========================================================================== */
 footer { margin: 1em 0 0 0; }
 .colophon {
-    // background-color:$color-blue-footer;
-    // background-image:image-url('global/Footer-Graphic.jpeg');
-    // background-position:right center;
-    // background-repeat:no-repeat;
     color:$color-black;
 
-    .group {
-        padding:.5em 0;
-
-        > * {
-            @include font-size(14, 18);
-        }
-    }
-
-    ul {
-        margin:em(11) auto;
-    }
-    p {
-        margin:em(17, 14) auto;
-    }
+    ul { padding:0; }
 
     @include respond-to(860) {
         .left,

@@ -1198,6 +1198,70 @@ img {
   margin-right: 0.5em;
 }
 
+/* =============================================================================
+   Icons
+========================================================================== */
+/* ==|== Icon =================
+   Menu
+====================================== */
+/* line 9, ../modules/_icons.scss */
+.icon--menu {
+  border-color: white;
+  border-style: solid;
+  border-width: 2px 0;
+  display: block;
+  height: 16px;
+  position: relative;
+  -webkit-transition: all 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
+  transition: all 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
+  width: 24px;
+}
+/* line 19, ../modules/_icons.scss */
+.icon--menu:before {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 2px 0 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+/* line 32, ../modules/_icons.scss */
+.js--sticky .icon--menu {
+  border-color: blue;
+}
+@media only screen and (max-width: 900em) {
+  /* line 9, ../modules/_icons.scss */
+  .icon--menu {
+    border-color: blue;
+  }
+}
+
+/* line 41, ../modules/_icons.scss */
+.js--toggle-menu {
+  cursor: pointer;
+  padding: 14px 10px;
+}
+
+/* line 46, ../modules/_icons.scss */
+.js--visible .icon--menu {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* line 53, ../modules/_icons.scss */
+.no-touch .js--toggle-menu:hover .icon--menu {
+  border-color: blue;
+}
+/* line 59, ../modules/_icons.scss */
+.no-touch .js--toggle-menu:active .icon--menu, .no-touch .js--toggle-menu:focus .icon--menu {
+  border-color: lime;
+}
+
 /* line 1, ../ui/_logo.scss */
 .logo {
   display: inline-block;
@@ -1206,32 +1270,49 @@ img {
 /* =============================================================================
    Navigation
 ========================================================================== */
-/* line 5, ../ui/_nav.scss */
+/* line 4, ../ui/_nav.scss */
+.masthead {
+  background: white;
+  width: 100%;
+}
+
+/* line 11, ../ui/_nav.scss */
 .menu--primary {
   margin: 3.65em 0 0 0;
 }
-/* line 7, ../ui/_nav.scss */
+/* line 13, ../ui/_nav.scss */
 .menu--primary li {
   display: inline-block;
   margin: 0 0.3em;
   vertical-align: middle;
 }
-/* line 12, ../ui/_nav.scss */
+/* line 18, ../ui/_nav.scss */
 .menu--primary li:hover > ul {
   opacity: 1;
+}
+@media only screen and (max-width: 60em) {
+  /* line 23, ../ui/_nav.scss */
+  .menu--primary ul {
+    display: none;
+  }
+  /* line 24, ../ui/_nav.scss */
+  .menu--primary li {
+    display: block;
+    text-align: center;
+  }
 }
 
 /* ==|== Menu =================
    Links
 ====================================== */
-/* line 22, ../ui/_nav.scss */
+/* line 35, ../ui/_nav.scss */
 .menu__link {
   position: relative;
   color: #ad0000;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-/* line 28, ../ui/_nav.scss */
+/* line 41, ../ui/_nav.scss */
 .menu__link::after {
   position: absolute;
   top: 100%;
@@ -1247,7 +1328,7 @@ img {
   -ms-transform: translateY(10px);
   transform: translateY(10px);
 }
-/* line 40, ../ui/_nav.scss */
+/* line 53, ../ui/_nav.scss */
 .menu__link:hover::after, .menu__link:focus::after {
   opacity: 1;
   -webkit-transform: translateY(1px);
@@ -1255,7 +1336,7 @@ img {
   transform: translateY(1px);
 }
 
-/* line 47, ../ui/_nav.scss */
+/* line 60, ../ui/_nav.scss */
 .current::after {
   position: absolute;
   top: 100%;
@@ -1275,62 +1356,132 @@ img {
 /* ==|== Menu =================
    Nested Links
 ====================================== */
-/* line 90, ../ui/_nav.scss */
+/* line 103, ../ui/_nav.scss */
 .menu--primary li > ul {
   position: absolute;
   opacity: 0;
   padding: 0;
   margin: 0;
-  -webkit-transition: opacity 0.25s ease;
-  transition: opacity 0.25s ease;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
+  transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
-/* line 97, ../ui/_nav.scss */
+/* line 110, ../ui/_nav.scss */
 .menu--primary li > ul li {
   display: block;
   padding: 0;
   margin: 0;
 }
-/* line 102, ../ui/_nav.scss */
-.menu--primary li > ul li > a {
+/* line 115, ../ui/_nav.scss */
+.menu--primary li > ul li a {
   display: inline-block;
   position: relative;
 }
-/* line 106, ../ui/_nav.scss */
-.menu--primary li > ul li > a::before, .menu--primary li > ul li > a::after {
+/* line 119, ../ui/_nav.scss */
+.menu--primary li > ul li a::before, .menu--primary li > ul li a::after {
   opacity: 0;
   position: absolute;
-  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.625, 0.125, 0.305, 0.875), -webkit-transform 0.3s cubic-bezier(0.625, 0.125, 0.305, 0.875);
+  transition: opacity 0.3s cubic-bezier(0.625, 0.125, 0.305, 0.875), transform 0.3s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
-/* line 112, ../ui/_nav.scss */
-.menu--primary li > ul li > a::before {
+/* line 124, ../ui/_nav.scss */
+.menu--primary li > ul li a::before {
   content: "<";
-  margin-right: 15px;
+  left: 0;
   -webkit-transform: translateX(10px);
   -ms-transform: translateX(10px);
   transform: translateX(10px);
 }
-/* line 117, ../ui/_nav.scss */
-.menu--primary li > ul li > a::after {
+/* line 129, ../ui/_nav.scss */
+.menu--primary li > ul li a::after {
   content: ">";
-  margin-left: 15px;
+  right: 0;
   -webkit-transform: translateX(-10px);
   -ms-transform: translateX(-10px);
   transform: translateX(-10px);
 }
-/* line 122, ../ui/_nav.scss */
-.menu--primary li > ul li > a:hover::before {
+/* line 134, ../ui/_nav.scss */
+.menu--primary li > ul li a:hover::before {
   opacity: 1;
-  -webkit-transform: translateX(-10px);
-  -ms-transform: translateX(-10px);
-  transform: translateX(-10px);
+  -webkit-transform: translateX(-20px) rotate(360deg);
+  -ms-transform: translateX(-20px) rotate(360deg);
+  transform: translateX(-20px) rotate(360deg);
 }
-/* line 127, ../ui/_nav.scss */
-.menu--primary li > ul li > a:hover::after {
+/* line 138, ../ui/_nav.scss */
+.menu--primary li > ul li a:hover::after {
   opacity: 1;
-  -webkit-transform: translateX(10px);
-  -ms-transform: translateX(10px);
-  transform: translateX(10px);
+  -webkit-transform: translateX(20px) rotate(360deg);
+  -ms-transform: translateX(20px) rotate(360deg);
+  transform: translateX(20px) rotate(360deg);
+}
+
+/* ==|== Menu =================
+   Toggle
+====================================== */
+/* line 151, ../ui/_nav.scss */
+.icon__container--menu {
+  display: none;
+}
+@media only screen and (max-width: 60em) {
+  /* line 151, ../ui/_nav.scss */
+  .icon__container--menu {
+    display: block;
+  }
+}
+
+/* ==|== Nav =================
+   Secondary
+====================================== */
+/* line 163, ../ui/_nav.scss */
+.menu--secondary {
+  background-image: -webkit-linear-gradient(left, #00ff00, #0000ff);
+  background-image: -webkit-gradient(linear, left top, right top, from(#00ff00), to(#0000ff));
+  background-image: linear-gradient(to right, #00ff00, #0000ff);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 170, ../ui/_nav.scss */
+.menu--secondary li {
+  display: inline-block;
+}
+/* line 174, ../ui/_nav.scss */
+.js--sticky .menu--secondary {
+  position: fixed;
+  top: 6.8em;
+  z-index: 1;
+}
+@media only screen and (max-width: 900em) {
+  /* line 163, ../ui/_nav.scss */
+  .menu--secondary {
+    visibility: hidden;
+  }
+}
+
+/* line 185, ../ui/_nav.scss */
+.menu__link--secondary {
+  border-width: 0;
+  -webkit-box-shadow: 0px 0px rgba(255, 255, 255, 0.29) inset;
+  box-shadow: 0px 0px rgba(255, 255, 255, 0.29) inset;
+  color: white;
+  display: block;
+  font-size: 25px;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1;
+  padding: 1.2em;
+}
+/* line 195, ../ui/_nav.scss */
+.menu__link--secondary.js--active, .menu__link--secondary:hover {
+  -webkit-box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
+  box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
+  color: white;
+}
+/* line 201, ../ui/_nav.scss */
+.menu__link--secondary:active, .menu__link--secondary:focus {
+  -webkit-box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
+  box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
+  color: white;
 }
 
 /* =============================================================================
@@ -1345,25 +1496,12 @@ footer {
 .colophon {
   color: #1b1b1b;
 }
-/* line 12, ../ui/_footer.scss */
-.colophon .group {
-  padding: .5em 0;
-}
-/* line 15, ../ui/_footer.scss */
-.colophon .group > * {
-  font-size: 14px;
-  font-size: 0.77778rem;
-}
-/* line 20, ../ui/_footer.scss */
+/* line 8, ../ui/_footer.scss */
 .colophon ul {
-  margin: 0.55em auto;
-}
-/* line 23, ../ui/_footer.scss */
-.colophon p {
-  margin: 1.21429em auto;
+  padding: 0;
 }
 @media only screen and (max-width: 860em) {
-  /* line 28, ../ui/_footer.scss */
+  /* line 11, ../ui/_footer.scss */
   .colophon .left,
   .colophon .right {
     float: none;
@@ -1372,7 +1510,7 @@ footer {
   }
 }
 @media only screen and (max-width: 600em) {
-  /* line 37, ../ui/_footer.scss */
+  /* line 20, ../ui/_footer.scss */
   .colophon li {
     display: block;
     margin: 0;
@@ -1519,19 +1657,45 @@ html[xmlns] .slides {
   cursor: default;
 }
 
-/* line 23, ../ui/_slideshow.scss */
-.slideshow {
-  margin-top: 3em;
-}
-
-/* line 26, ../ui/_slideshow.scss */
+/* ==|== Slideshow =================
+   Flexslider
+====================================== */
+/* ==|== Slideshow =================
+   Pagination
+====================================== */
+/* line 36, ../ui/_slideshow.scss */
 .flex-control-nav {
   text-align: center;
 }
-/* line 28, ../ui/_slideshow.scss */
+/* line 39, ../ui/_slideshow.scss */
 .flex-control-nav li {
-  padding: 0 1em;
   display: inline-block;
+  margin: 0.25em;
+}
+/* line 44, ../ui/_slideshow.scss */
+.flex-control-nav a {
+  background: #9c9191;
+  border: 2px solid #9c9191;
+  cursor: pointer;
+  display: block;
+  height: 0.75em;
+  overflow: hidden;
+  text-indent: 100%;
+  width: 0.75em;
+}
+/* line 54, ../ui/_slideshow.scss */
+.flex-control-nav a:hover {
+  background: transparent;
+}
+/* line 58, ../ui/_slideshow.scss */
+.flex-control-nav a:active, .flex-control-nav a:focus {
+  background: transparent;
+  border-color: #ad0000;
+}
+/* line 63, ../ui/_slideshow.scss */
+.flex-control-nav a.flex-active {
+  background: #ad0000;
+  border-color: #ad0000;
 }
 
 /* line 2, ../ui/_featured.scss */
@@ -1580,15 +1744,15 @@ html[xmlns] .slides {
 .featured__collection:hover::before {
   opacity: 1;
   top: 0;
-  -webkit-transform: translateY(85px);
-  -ms-transform: translateY(85px);
-  transform: translateY(85px);
+  -webkit-transform: translateY(100px);
+  -ms-transform: translateY(100px);
+  transform: translateY(100px);
 }
 /* line 45, ../ui/_featured.scss */
 .featured__collection:hover::after {
   opacity: 1;
   bottom: 0;
-  -webkit-transform: translateY(-85px);
-  -ms-transform: translateY(-85px);
-  transform: translateY(-85px);
+  -webkit-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  transform: translateY(-100px);
 }

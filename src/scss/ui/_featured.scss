@@ -40,11 +40,15 @@
     &:hover::before {
         opacity: 1;
         top: 0;
-        transform: translateY(85px);
+        transform: translateY(100px);
     }
     &:hover::after {
         opacity: 1;
         bottom: 0;
-        transform: translateY(-85px);
+        transform: translateY(-100px);
     }
+
 }
+
+
+

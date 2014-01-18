@@ -1,5 +1,65 @@
+
+{% if settings.slide_1 or settings.slide_2 or settings.slide_3 or settings.slide_4 %}
+<!-- Begin slider -->
+<div class="slideshow">
+  <div class="flexslider-container">
+    <div class="flexslider">
+      <ul class="slides">
+        {% for i in (1..4) %}
+          {% capture show_slide %}slide_{{ i }}{% endcapture %}
+          {% capture image %}slideshow_{{ i }}.jpg{% endcapture %}
+          {% capture link %}slide_{{ i }}_link{% endcapture %}
+          {% capture alt %}slide_{{ i }}_alt{% endcapture %}
+          {% if settings[show_slide] %}
+          <li>
+            <a href="{{ settings[link] }}">
+              <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="flex-controls"></div>
+    </div>
+  </div>
+</div>
+<!-- End slider -->
+{% endif %}
+<section class="featured group">
+    <header>
+        <h1>Featured Products:</h1>
+    </header>
+    <div class="grid">
+        <article class="col col--4">
+            <a href="#">
+                <div class="featured__collection">
+                    <img src="{{ 'feature1.jpg' | asset_url }}">
+                    <span>Fueled</span>
+                </div>
+            </a>
+        </article><!--
+         --><article class="col col--4">
+         <a href="#">
+                <div class="featured__collection">
+                    <img src="{{ 'feature2.jpg    ' | asset_url }}">
+                    <span>Fueled</span>
+                </div>
+            </a>
+        </article><!--
+         --><article class="col col--4">
+         <a href="#">
+                <div class="featured__collection">
+                    <img src="{{ 'feature3.jpg' | asset_url }}">
+                    <span>Fueled</span>
+                </div>
+            </a>
+        </article><!--
+    --></div><!-- .grid -->
+</section><!--featured -->
+
 <!-- Fueled Start -->
-<header class="">
+<section class="group">
+    <header class="">
         <div>
             <h1>Fueled Boilerplate</h1>
         </div>
@@ -93,57 +153,7 @@
             </div>
         </main>
     </section> <!-- .page -->
-<!--Fueled End -->
+</section><!--Fueled End -->
 
-{% if settings.slide_1 or settings.slide_2 or settings.slide_3 or settings.slide_4 %}
-<!-- Begin slider -->
-<div class="slideshow">
-  <div class="flexslider-container">
-    <div class="flexslider">
-      <ul class="slides">
-        {% for i in (1..4) %}
-          {% capture show_slide %}slide_{{ i }}{% endcapture %}
-          {% capture image %}slideshow_{{ i }}.jpg{% endcapture %}
-          {% capture link %}slide_{{ i }}_link{% endcapture %}
-          {% capture alt %}slide_{{ i }}_alt{% endcapture %}
-          {% if settings[show_slide] %}
-          <li>
-            <a href="{{ settings[link] }}">
-              <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-            </a>
-          </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <div class="flex-controls"></div>
-    </div>
-  </div>
-</div>
-<!-- End slider -->
-{% endif %}
-<section class="featured">
-    <header>
-        <h1>Featured Products:</h1>
-    </header>
-    <div class="grid">
-        <article class="col col--4">
-            <div class="featured__collection">
-                <img src="{{ 'feature1.jpg' | asset_url }}">
-                <span>Fueled</span>
-            </div>
-        </article><!-- col--4 -->
-        <article class="col col--4">
-            <div class="featured__collection">
-                <img src="{{ 'feature2.jpg' | asset_url }}">
-                <span>Fueled</span>
-            </div>
-        </article><!-- col--4 -->
-        <article class="col col--4">
-            <div class="featured__collection">
-                <img src="{{ 'feature3.jpg' | asset_url }}">
-                <span>Fueled</span>
-            </div>
-        </article><!-- col--4 -->
-    </div><!-- .grid -->
-</section><!--featured -->
+
 <!-- end content page -->

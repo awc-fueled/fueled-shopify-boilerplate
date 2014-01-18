@@ -78,7 +78,7 @@
                                 <a href="{{ link.url }}" class="menu__link{% if link.active %} current{% endif %}">
                                   <span>{{ link.title }}</span></a>
                               </li>
-                              {% else %}
+                              {% else %}    
                               <li class=""><a href="{{ link.url }}" class="menu__link{% if link.active %} current{% endif %}">
                                 <span>{{ link.title }}</span></a>
                                 <ul class="">
@@ -99,27 +99,24 @@
                             </li>         
                               {% include 'customer-links' %}
                         </ul>
-                        <!-- <span class="icon__container icon__container--menu js--toggle-menu">
+                        <span class="icon__container icon__container--menu js--toggle-menu">
                             <span class="icon icon--menu">
                                 <span class="visuallyhidden">Toggle Menu Visibility</span>
                             </span>
-                        </span> -->
+                        </span> <!-- icon__contianer -->
                     </nav>
                 </div><!-- .right -->
             </div><!-- .group -->
         </div><!-- .masthead__inner -->
     </header><!-- .masthead -->
-    <main class="group">    
-      <!-- Begin content-->
-      <section >
+   
+    <main>    
+      <section>
           {% if template == "list-collections" %}
-          <div  >
-            <div >
-              <h1><span>Product Collections</span></h1>
-            </div> <!-- /.span12 -->
-          </div> <!-- /.row -->
-          
-          <div >
+          <header>
+              <h1>Product Collections</h1>
+          </header> 
+          <div>
             {% for collection in collections %}
             {% unless collection.all_products_count == 0 or collection.handle == "frontpage" %}
             {% include 'collection-loop' %}
@@ -127,98 +124,79 @@
             {% endfor %}
           </div> <!-- /#collection.row -->
           {% else %}
-          {{ content_for_layout }}
-          {% endif %}
-      </section>
-      <!-- End content-->
-      
-    </main>
-  <!-- End wrapper -->
-  
-  <!-- Begin footer -->
-  <div >
-    <footer>
-      <div class="colophon group grid">
 
-        <!-- Begin latest blog post -->
-        {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
-        <div class="col col--4">
-          {% assign article = blogs.news.articles.first %}
-          <div >
-            <h4>{{ settings.footer_blog_post_header }}</h4>
-            <p ><strong>{{ article.title | link_to: article.url }}</strong></p>
-            <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
-          </div>
-        </div>
-        {% endif %}
-        <!-- End latest blog post -->
+          {{ content_for_layout }}
+
+          {% endif %}
+      </section><!--  content-->           
+    </main><!-- main -->
+    <footer class="colophon">
+        <div class="group grid">
+            <section class="col col--4">
+                {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
+                <div>
+                  {% assign article = blogs.news.articles.first %}
+                  <div >
+                    <h4>{{ settings.footer_blog_post_header }}</h4>
+                    <p ><strong>{{ article.title | link_to: article.url }}</strong></p>
+                    <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+                  </div>
+                </div>
+                {% endif %}
+            </section><!-- End latest blog post 
         
-        {% if settings.footer_display_navigation and linklists.footer.links.size > 0 %}
-        <!-- Begin footer navigation -->
-        <div class="col col--4">          
-          <h4>{{ settings.footer_linklist_title }}</h4>
-          <ul class="list--inline">
-            {% for link in linklists.footer.links %}
-              <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
-            {% endfor %}
-          </ul>
-          
-        </div>
-        <!-- End footer navigation -->
+        {% if settings.footer_display_navigation and linklists.footer.links.size > 0 %} 
+         --><nav class="col col--4">
+                <header>          
+                    <h4>{{ settings.footer_linklist_title }}</h4>
+                </header>
+                    <ul class="list--inline">
+                    {% for link in linklists.footer.links %}
+                        <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+            </nav><!-- End footer navigation
+       
         {% endif %}
         
         {% if settings.footer_display_newsletter %}
-        <!-- Begin newsletter -->
-          <div class="col col--4">
-            <div>
-              <h4>{{ settings.footer_newsletter_title }}</h4>
-              <form action="{{ settings.mailing_list_form_action }}" method="post"  name="mc-embedded-subscribe-form" target="_blank">
-                <input type="email" value="" placeholder="Email Address" name="EMAIL"  /><input type="submit" class="btn newsletter" value="Subscribe" name="subscribe"  />
-              </form>
-            </div>
-          </div>
-        <!-- End newsletter -->
+         --><section class="col col--4">
+                <header>
+                    <h4>{{ settings.footer_newsletter_title }}</h4>
+                </header>
+                    <form action="{{ settings.mailing_list_form_action }}" method="post"  name="mc-embedded-subscribe-form" target="_blank">
+                        <input type="email" value="" placeholder="Email Address" name="EMAIL"  />
+                        <input type="submit" class="btn newsletter" value="Subscribe" name="subscribe"  />
+                    </form>
+            </section><!-- newsletter
         {% endif %}
           
         {% if settings.footer_display_social %}
-        <!-- Begin social -->
-          <div class="col col--3">
-            <h4>{{ settings.footer_social_title }}</h4>
-            {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter">Twitter</a>{% endif %}
-            {% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook">Facebook</a>{% endif %}
-            {% if settings.youtube_link != blank %}<a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube" class="icon-social youtube">YouTube</a>{% endif %}
-            {% if settings.atom_link != blank %}<a href="{{ settings.atom_link }}" title="{{ shop.name }} news" class="icon-social atom">Blog feed</a>{% endif %}
-            {% if settings.instagram_link != blank %}<a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-social instagram">Instagram</a>{% endif %}
-            {% if settings.pinterest_link != blank %}<a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-social pinterest">Pinterest</a>{% endif %}
-            {% if settings.vimeo_link != blank %}<a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo" class="icon-social vimeo">Vimeo</a>{% endif %}
-            {% if settings.tumblr_link != blank %}<a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr" class="icon-social tumblr">Tumblr</a>{% endif %}
-            {% if settings.google_link != blank %}<a href="{{ settings.google_link }}" title="{{ shop.name }} on Google+" class="icon-social google">Google+</a>{% endif %}
-          </div>
-        <!-- End social -->
+         --><nav class="col col--4">
+                <header>
+                    <h4>{{ settings.footer_social_title }}</h4>
+                </header>
+                <ul>
+                {% if settings.twitter_link != blank %}<li><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter">Twitter</a></li>{% endif %}
+                {% if settings.facebook_link != blank %}<li><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook">Facebook</a></li>{% endif %}
+                {% if settings.youtube_link != blank %}<li><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube" class="icon-social youtube">YouTube</a></li>{% endif %}
+                {% if settings.atom_link != blank %}<li><a href="{{ settings.atom_link }}" title="{{ shop.name }} news" class="icon-social atom">Blog feed</a></li>{% endif %}
+                {% if settings.instagram_link != blank %}<li><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-social instagram">Instagram</a></li>{% endif %}
+                {% if settings.pinterest_link != blank %}<li><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-social pinterest">Pinterest</a></li>{% endif %}
+                {% if settings.vimeo_link != blank %}<li><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo" class="icon-social vimeo">Vimeo</a></li>{% endif %}
+                {% if settings.tumblr_link != blank %}<li><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr" class="icon-social tumblr">Tumblr</a></li>{% endif %}
+                {% if settings.google_link != blank %}<li><a href="{{ settings.google_link }}" title="{{ shop.name }} on Google+" class="icon-social google">Google+</a></li>{% endif %}
+                </ul>
+            </nav><!-- social links 
         {% endif %}
         
-        <!-- Begin copyright -->
-        <div>
-          <ul class="list--inline">
-            {% if settings.accept_visa %}<li><img src="{{ 'icon-cc-visa.png' | asset_url }}" alt="Visa" /></li>{% endif %}
-            {% if settings.accept_mastercard %}<li><img src="{{ 'icon-cc-mastercard.png' | asset_url }}" alt="MasterCard" /></li>{% endif %}
-            {% if settings.accept_amex %}<li><img src="{{ 'icon-cc-amex.png' | asset_url }}" alt="Amex" /></li>{% endif %}
-            {% if settings.accept_discover %}<li><img src="{{ 'icon-cc-discover.png' | asset_url }}" alt="Discover" /></li>{% endif %}
-            {% if settings.accept_paypal %}<li><img src="{{ 'icon-cc-paypal.png' | asset_url }}" alt="PayPal" /></li>{% endif %}
-            {% if settings.accept_google %}<li><img src="{{ 'icon-cc-google.png' | asset_url }}" alt="Google Wallet" /></li>{% endif %}
-            {% if settings.accept_bitcoin %}<li><img src="{{ 'icon-cc-bitcoin.png' | asset_url }}" alt="Bitcoin" /></li>{% endif %}
+        
+         --><div>
+                <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
+            </div><!-- copyright -->
 
-          </ul> <!-- /.credit-cards -->
-          <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
-        </div>
-        <!-- End copyright -->
-
-      </div>
-    </footer>
-  </div>
-  <!-- End footer -->
-    
-  {{ 'jquery.flexslider-min.js' | asset_url | script_tag }}
+        </div><!-- grid -->
+    </footer><!-- colophon -->
 
   {% if settings.enable_product_image_zoom %}
   {{ 'jquery.zoom.js' | asset_url | script_tag }}

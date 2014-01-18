@@ -1,6 +1,12 @@
 /* =============================================================================
    Navigation
 ========================================================================== */
+.masthead{
+    background: $color-white;
+    width: 100%;
+    @include respond-to(60)
+}
+
 
 .menu--primary {
     margin: 3.65em 0 0 0;
@@ -12,6 +18,13 @@
     &:hover > ul{
         opacity: 1;
     }
+  }
+  @include respond-to(60){
+      ul { display: none;}
+      li {
+          display: block;
+          text-align: center;
+      }
   }
 }
 
@@ -92,43 +105,102 @@
         opacity: 0;
         padding: 0;
         margin: 0;
-        transition: opacity 0.25s ease;
+        transition: opacity 0.25s cubic-bezier(#{$bezier-nice});
 
         li {
             display: block;
-            padding:0;
+            padding: 0;
             margin: 0;
         }
-        li > a {
+        li a {
             display: inline-block;
             position: relative;
 
             &::before, &::after{
                 opacity: 0;
                 position: absolute;
-                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-
+                transition: opacity 0.3s cubic-bezier(#{$bezier-nice}), transform 0.3s cubic-bezier(#{$bezier-nice});
             }
             &::before{
                 content: "<";
-                margin-right: 15px;
+                left: 0;
                 transform: translateX(10px);
             }
             &::after{
                 content: ">";
-                margin-left: 15px;
+                right: 0;
                 transform: translateX(-10px);
             }
             &:hover::before, {
                 opacity: 1;
-                transform: translateX(-10px);
-
+                transform: translateX(-20px) rotate(360deg);
             }
             &:hover::after{
                 opacity: 1;
-                transform: translateX(10px);
+                transform: translateX(20px) rotate(360deg);
 
             }
         }
+    }
+}
+
+/* ==|== Menu =================
+   Toggle
+====================================== */
+
+.icon__container--menu {
+    display: none;
+    @include respond-to(60){
+        display: block;
+    }
+}
+
+
+/* ==|== Nav =================
+   Secondary
+====================================== */
+
+.menu--secondary {
+    @include background-image(linear-gradient(left, $color-green, $color-blue));
+    left:0;
+    position: absolute;
+    right:0;
+    top:0;
+
+    li {
+        display: inline-block;
+    }
+
+    .js--sticky & {
+        position: fixed;
+        top:em(136);
+        z-index:1;
+    }
+
+    @include respond-to(900) {
+        visibility: hidden;
+    }
+}
+
+.menu__link--secondary {
+    border-width:0;
+    box-shadow:0px 0px rgba($color-white, 0.29) inset;
+    color:$color-white;
+    display: block;
+    @include font-size(25);
+    font-weight:300;
+    line-height:1;
+    padding:em(30, 25);
+
+    &.js--active,
+    &:hover {
+        box-shadow:0px -8px rgba($color-white, 0.29) inset;
+        color:$color-white;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow:0px -8px rgba($color-white, 0.75) inset;
+        color:$color-white;
     }
 }
