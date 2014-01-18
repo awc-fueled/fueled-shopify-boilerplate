@@ -31,6 +31,9 @@
 	Base
 ========================================== */
 /* ==|== Colors =================
+    Elements
+========================================== */
+/* ==|== Colors =================
 	Elements
 ========================================== */
 /* ==|== Colors =================
@@ -1199,6 +1202,10 @@ img {
 /* =============================================================================
    Navigation
 ========================================================================== */
+/* line 5, ../ui/_nav.scss */
+.menu--primary {
+  margin: 3.65em 0 0 0;
+}
 /* line 7, ../ui/_nav.scss */
 .menu--primary li {
   display: inline-block;
@@ -1207,32 +1214,129 @@ img {
 }
 /* line 12, ../ui/_nav.scss */
 .menu--primary li:hover > ul {
-  visibility: visible;
+  opacity: 1;
 }
 
 /* ==|== Menu =================
    Links
 ====================================== */
+/* line 22, ../ui/_nav.scss */
+.menu__link {
+  position: relative;
+  color: #ad0000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* line 28, ../ui/_nav.scss */
+.menu__link::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(173, 0, 0, 0.3);
+  content: '';
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+}
+/* line 40, ../ui/_nav.scss */
+.menu__link:hover::after, .menu__link:focus::after {
+  opacity: 1;
+  -webkit-transform: translateY(1px);
+  -ms-transform: translateY(1px);
+  transform: translateY(1px);
+}
+
+/* line 47, ../ui/_nav.scss */
+.current::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(173, 0, 0, 0.3);
+  content: '';
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  -webkit-transform: translateY(1px);
+  -ms-transform: translateY(1px);
+  transform: translateY(1px);
+}
+
 /* ==|== Menu =================
    Nested Links
 ====================================== */
-/* line 77, ../ui/_nav.scss */
+/* line 90, ../ui/_nav.scss */
 .menu--primary li > ul {
   position: absolute;
-  visibility: hidden;
+  opacity: 0;
   padding: 0;
   margin: 0;
+  -webkit-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
 }
-/* line 82, ../ui/_nav.scss */
+/* line 97, ../ui/_nav.scss */
 .menu--primary li > ul li {
   display: block;
   padding: 0;
   margin: 0;
 }
+/* line 102, ../ui/_nav.scss */
+.menu--primary li > ul li > a {
+  display: inline-block;
+  position: relative;
+}
+/* line 106, ../ui/_nav.scss */
+.menu--primary li > ul li > a::before, .menu--primary li > ul li > a::after {
+  opacity: 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+/* line 112, ../ui/_nav.scss */
+.menu--primary li > ul li > a::before {
+  content: "<";
+  margin-right: 15px;
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+/* line 117, ../ui/_nav.scss */
+.menu--primary li > ul li > a::after {
+  content: ">";
+  margin-left: 15px;
+  -webkit-transform: translateX(-10px);
+  -ms-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+/* line 122, ../ui/_nav.scss */
+.menu--primary li > ul li > a:hover::before {
+  opacity: 1;
+  -webkit-transform: translateX(-10px);
+  -ms-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+/* line 127, ../ui/_nav.scss */
+.menu--primary li > ul li > a:hover::after {
+  opacity: 1;
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
 
 /* =============================================================================
    Footer
 ========================================================================== */
+/* line 4, ../ui/_footer.scss */
+footer {
+  margin: 1em 0 0 0;
+}
+
 /* line 5, ../ui/_footer.scss */
 .colophon {
   color: #1b1b1b;
@@ -1269,4 +1373,218 @@ img {
     display: block;
     margin: 0;
   }
+}
+
+/* line 1, ../ui/_slideshow.scss */
+.flex-container a:active, .flexslider a:active, .flex-container a:focus, .flexslider a:focus {
+  outline: none;
+}
+
+/* line 2, ../ui/_slideshow.scss */
+.slides, .flex-control-nav, .flex-direction-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 3, ../ui/_slideshow.scss */
+.flexslider {
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+
+/* line 4, ../ui/_slideshow.scss */
+.flexslider .slides > li {
+  display: none;
+  -webkit-backface-visibility: hidden;
+  margin-bottom: 0px !important;
+}
+
+/* Hide the slides before the JS is loaded. Avoids image jumping */
+/* line 5, ../ui/_slideshow.scss */
+.flexslider .slides img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* line 6, ../ui/_slideshow.scss */
+.flex-pauseplay span {
+  text-transform: capitalize;
+}
+
+/* line 7, ../ui/_slideshow.scss */
+.slides:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+/* line 8, ../ui/_slideshow.scss */
+html[xmlns] .slides {
+  display: block;
+}
+
+/* line 9, ../ui/_slideshow.scss */
+* html .slides {
+  height: 1%;
+}
+
+/* line 10, ../ui/_slideshow.scss */
+.no-js .slides > li:first-child {
+  display: block;
+}
+
+/* line 11, ../ui/_slideshow.scss */
+.flexslider {
+  background: #fff;
+  position: relative;
+  zoom: 1;
+}
+
+/* line 12, ../ui/_slideshow.scss */
+.flexslider .slides {
+  zoom: 1;
+}
+
+/* line 13, ../ui/_slideshow.scss */
+.flexslider .slides > li {
+  position: relative;
+}
+
+/* line 14, ../ui/_slideshow.scss */
+.flex-container {
+  zoom: 1;
+  position: relative;
+}
+
+/* line 15, ../ui/_slideshow.scss */
+.flex-caption {
+  background: none;
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
+  zoom: 1;
+}
+
+/* line 17, ../ui/_slideshow.scss */
+.flex-caption {
+  width: 96%;
+  padding: 2%;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* line 18, ../ui/_slideshow.scss */
+.flex-direction-nav {
+  height: 0;
+  display: none;
+}
+
+/* line 19, ../ui/_slideshow.scss */
+.flex-direction-nav li {
+  margin-bottom: 0;
+}
+
+/* line 20, ../ui/_slideshow.scss */
+.flex-direction-nav li a {
+  width: 50px;
+  height: 50px;
+  display: block;
+  background: url('{{ "slider-arrows.png?47334" | asset_url }}') no-repeat;
+  position: absolute;
+  top: 44%;
+  cursor: pointer;
+  text-indent: -999em;
+}
+
+/* line 21, ../ui/_slideshow.scss */
+.flex-direction-nav li .disabled {
+  opacity: .3;
+  filter: alpha(opacity=30);
+  cursor: default;
+}
+
+/* line 23, ../ui/_slideshow.scss */
+.slideshow {
+  margin-top: 3em;
+}
+
+/* line 26, ../ui/_slideshow.scss */
+.flex-control-nav {
+  text-align: center;
+}
+/* line 28, ../ui/_slideshow.scss */
+.flex-control-nav li {
+  padding: 0 1em;
+  display: inline-block;
+}
+
+/* line 2, ../ui/_featured.scss */
+.featured h1 {
+  font-size: 2em;
+}
+
+/* line 8, ../ui/_featured.scss */
+.featured__collection {
+  display: inline-block;
+  position: relative;
+  line-height: 0;
+}
+/* line 12, ../ui/_featured.scss */
+.featured__collection span {
+  display: block;
+  color: white;
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+}
+/* line 24, ../ui/_featured.scss */
+.featured__collection::before, .featured__collection::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  opacity: 0;
+  background: rgba(156, 145, 145, 0.79);
+  position: absolute;
+  -webkit-transition: opacity 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+/* line 34, ../ui/_featured.scss */
+.featured__collection::before {
+  top: 0;
+}
+/* line 37, ../ui/_featured.scss */
+.featured__collection::after {
+  bottom: 0;
+}
+/* line 40, ../ui/_featured.scss */
+.featured__collection:hover::before {
+  opacity: 1;
+  top: 0;
+  -webkit-transform: translateY(85px);
+  -ms-transform: translateY(85px);
+  transform: translateY(85px);
+}
+/* line 45, ../ui/_featured.scss */
+.featured__collection:hover::after {
+  opacity: 1;
+  bottom: 0;
+  -webkit-transform: translateY(-85px);
+  -ms-transform: translateY(-85px);
+  transform: translateY(-85px);
 }

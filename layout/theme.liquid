@@ -75,11 +75,11 @@
                             {% for link in linklists.main-menu.links %}
                               {% if linklists[link.handle] == empty %}
                               <li>
-                                <a href="{{ link.url }}" class="{% if link.active %} current{% endif %}">
+                                <a href="{{ link.url }}" class="menu__link{% if link.active %} current{% endif %}">
                                   <span>{{ link.title }}</span></a>
                               </li>
                               {% else %}
-                              <li class=""><a href="{{ link.url }}" class="{% if link.active %} current{% endif %}">
+                              <li class=""><a href="{{ link.url }}" class="menu__link{% if link.active %} current{% endif %}">
                                 <span>{{ link.title }}</span></a>
                                 <ul class="">
                                   {% for l in linklists[link.handle].links %}
@@ -91,9 +91,9 @@
                             {% endfor %}
                             <!-- End Link Generator -->
                             <li>
-                                <a href="/cart"  title="Shopping Cart">
+                                <a href="/cart"  title="Shopping Cart" class="btn">
                                   <span ></span>
-                                  <span >{{ cart.item_count }}</span>
+                                  <span>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
                                   Cart
                                 </a>
                             </li>         
@@ -108,6 +108,7 @@
                 </div><!-- .right -->
             </div><!-- .group -->
         </div><!-- .masthead__inner -->
+    </header><!-- .masthead -->
     <main class="group">    
       <!-- Begin content-->
       <section >

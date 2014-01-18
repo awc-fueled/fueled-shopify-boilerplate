@@ -97,9 +97,9 @@ module.exports = (grunt) ->
     shell:
       touchCSS:
         command: [
-                    'sleep 0.2 ',
+                    'sleep 0.5 ',
                     'touch assets/scripts.min.js.liquid',
-                    'sleep 0.2 ',
+                    'sleep 0.5 ',
                     'touch assets/styles.min.css.liquid',
                     
                 ].join(' && ')

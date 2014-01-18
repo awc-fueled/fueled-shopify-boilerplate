@@ -17,9 +17,17 @@
 
 $color-white: #fff;
 $color-black: #1b1b1b;
-$color-red: #AE0000;
+$color-red: hsl(0, 100%, 34%);
 $color-green: #00FF00;
-$color-blue: #0000FF;    
+$color-blue: #0000FF;
+$color-grey: hsl(0, 5%, 59%);
+
+/* ==|== Colors =================
+    Elements
+========================================== */
+
+$color-red--transparent: hsla(0, 100%, 34%, 0.3);
+$color-grey--transparent: hsla(0, 5%, 59%, 0.79);
 
 /* ==|== Colors =================
 	Elements
