@@ -1,0 +1,5 @@
+/* line 1, ../../ui/thumbnails.scss */
+.thumbnails img {
+  vertical-align: top;
+  margin: 0.5em 0;
+}

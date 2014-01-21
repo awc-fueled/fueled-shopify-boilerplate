@@ -1,0 +1,16 @@
+#cartform {
+    table{
+        width: 100%;
+        .qty, .price {
+            text-align: center;
+        }
+    }
+    #checkout, #update-cart {
+        float: right;
+        margin: 1em 2em;
+    }
+    #checkout{
+        margin-right: 18%;
+    }
+
+}

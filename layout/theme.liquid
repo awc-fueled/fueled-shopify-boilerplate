@@ -91,13 +91,19 @@
                             {% endfor %}
                             <!-- End Link Generator -->
                             <li>
+                                <a class="js--toggle-search" href="">Search</a>
+                            </li>
+
+                            {% include 'customer-links' %}
+
+                            <li>
                                 <a href="/cart"  title="Shopping Cart" class="btn">
                                   <span ></span>
                                   <span>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
                                   Cart
                                 </a>
-                            </li>         
-                              {% include 'customer-links' %}
+                            </li>
+                              
                         </ul>
                         <span class="icon__container icon__container--menu js--toggle-menu">
                             <span class="icon icon--menu">
@@ -109,94 +115,105 @@
             </div><!-- .group -->
         </div><!-- .masthead__inner -->
     </header><!-- .masthead -->
-   
-    <main>    
-      <section>
-          {% if template == "list-collections" %}
-          <header>
-              <h1>Product Collections</h1>
-          </header> 
-          <div>
-            {% for collection in collections %}
-            {% unless collection.all_products_count == 0 or collection.handle == "frontpage" %}
-            {% include 'collection-loop' %}
-            {% endunless %}
-            {% endfor %}
-          </div> <!-- /#collection.row -->
-          {% else %}
+    <div class="search">
+        <form class="search__form--pop" action="/search">
+            
+            <span class="js--toggle-search--close search__close">X</span>
+            
+            <div>
+                <input type="image" src="{{ 'search.svg' | asset_url }}" alt="Go" id="go">
+                <input type="text" name="q" class="search_box" placeholder="Search" value=""  />
+            </div>
+        </form><!-- .search__form -->
+        <main>    
+          <section>
+              {% if template == "list-collections" %}
+              <header>
+                  <h1>Product Collections</h1>
+              </header> 
+              <div>
+                {% for collection in collections %}
+                {% unless collection.all_products_count == 0 or collection.handle == "frontpage" %}
+                {% include 'collection-loop' %}
+                {% endunless %}
+                {% endfor %}
+              </div> <!-- /#collection.row -->
+              {% else %}
 
-          {{ content_for_layout }}
+              {{ content_for_layout }}
 
-          {% endif %}
-      </section><!--  content-->           
-    </main><!-- main -->
-    <footer class="colophon">
-        <div class="group grid">
-            <section class="col col--4">
-                {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
-                <div>
-                  {% assign article = blogs.news.articles.first %}
-                  <div >
-                    <h4>{{ settings.footer_blog_post_header }}</h4>
-                    <p ><strong>{{ article.title | link_to: article.url }}</strong></p>
-                    <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
-                  </div>
-                </div>
-                {% endif %}
-            </section><!-- End latest blog post 
-        
-        {% if settings.footer_display_navigation and linklists.footer.links.size > 0 %} 
-         --><nav class="col col--4">
-                <header>          
-                    <h4>{{ settings.footer_linklist_title }}</h4>
-                </header>
-                    <ul class="list--inline">
-                    {% for link in linklists.footer.links %}
-                        <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
-                    {% endfor %}
+              {% endif %}
+          </section><!--  content-->           
+        </main><!-- main -->
+
+        <footer class="colophon">
+            <div class="group grid">
+                <section class="col col--3">
+                    {% if settings.footer_display_blog and blogs.news.articles.size > 0 %}
+                    <div>
+                      {% assign article = blogs.news.articles.first %}
+                      <div >
+                        <h4>News</h4>
+                        <p ><strong>{{ article.title | link_to: article.url }}</strong></p>
+                        <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+                      </div>
+                    </div>
+                    {% endif %}
+                </section><!-- End latest blog post 
+            
+            {% if settings.footer_display_navigation and linklists.footer.links.size > 0 %} 
+             --><nav class="col col--3">
+                    <header>          
+                        <h4>Quick Links</h4>
+                    </header>
+                        <ul class="list--inline">
+                        {% for link in linklists.footer.links %}
+                            <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </nav><!-- End footer navigation
+           
+            {% endif %}
+            
+            {% if settings.footer_display_newsletter %}
+             --><section class="col col--3">
+                    <header>
+                        <h4>Newsletter</h4>
+                    </header>
+                        <form action="{{ settings.mailing_list_form_action }}" method="post"  class="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                            <input type="email" value="" placeholder="you@fueled.com" name="EMAIL"  />
+                            <input type="submit" class="btn newsletter" value="Subscribe" name="subscribe"  />
+                        </form>
+                </section><!-- newsletter
+            {% endif %}
+              
+            {% if settings.footer_display_social %}
+             --><nav class="col col--3">
+                    <header>
+                        <h4>Follow Us</h4>
+                    </header>
+                    <ul>
+                    {% if settings.twitter_link != blank %}<li><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter">Twitter</a></li>{% endif %}
+                    {% if settings.facebook_link != blank %}<li><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook">Facebook</a></li>{% endif %}
+                    {% if settings.youtube_link != blank %}<li><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube" class="icon-social youtube">YouTube</a></li>{% endif %}
+                    {% if settings.atom_link != blank %}<li><a href="{{ settings.atom_link }}" title="{{ shop.name }} news" class="icon-social atom">Blog feed</a></li>{% endif %}
+                    {% if settings.instagram_link != blank %}<li><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-social instagram">Instagram</a></li>{% endif %}
+                    {% if settings.pinterest_link != blank %}<li><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-social pinterest">Pinterest</a></li>{% endif %}
+                    {% if settings.vimeo_link != blank %}<li><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo" class="icon-social vimeo">Vimeo</a></li>{% endif %}
+                    {% if settings.tumblr_link != blank %}<li><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr" class="icon-social tumblr">Tumblr</a></li>{% endif %}
+                    {% if settings.google_link != blank %}<li><a href="{{ settings.google_link }}" title="{{ shop.name }} on Google+" class="icon-social google">Google+</a></li>{% endif %}
                     </ul>
-            </nav><!-- End footer navigation
-       
-        {% endif %}
-        
-        {% if settings.footer_display_newsletter %}
-         --><section class="col col--4">
-                <header>
-                    <h4>{{ settings.footer_newsletter_title }}</h4>
-                </header>
-                    <form action="{{ settings.mailing_list_form_action }}" method="post"  name="mc-embedded-subscribe-form" target="_blank">
-                        <input type="email" value="" placeholder="Email Address" name="EMAIL"  />
-                        <input type="submit" class="btn newsletter" value="Subscribe" name="subscribe"  />
-                    </form>
-            </section><!-- newsletter
-        {% endif %}
-          
-        {% if settings.footer_display_social %}
-         --><nav class="col col--4">
-                <header>
-                    <h4>{{ settings.footer_social_title }}</h4>
-                </header>
-                <ul>
-                {% if settings.twitter_link != blank %}<li><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter">Twitter</a></li>{% endif %}
-                {% if settings.facebook_link != blank %}<li><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook">Facebook</a></li>{% endif %}
-                {% if settings.youtube_link != blank %}<li><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube" class="icon-social youtube">YouTube</a></li>{% endif %}
-                {% if settings.atom_link != blank %}<li><a href="{{ settings.atom_link }}" title="{{ shop.name }} news" class="icon-social atom">Blog feed</a></li>{% endif %}
-                {% if settings.instagram_link != blank %}<li><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-social instagram">Instagram</a></li>{% endif %}
-                {% if settings.pinterest_link != blank %}<li><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-social pinterest">Pinterest</a></li>{% endif %}
-                {% if settings.vimeo_link != blank %}<li><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo" class="icon-social vimeo">Vimeo</a></li>{% endif %}
-                {% if settings.tumblr_link != blank %}<li><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr" class="icon-social tumblr">Tumblr</a></li>{% endif %}
-                {% if settings.google_link != blank %}<li><a href="{{ settings.google_link }}" title="{{ shop.name }} on Google+" class="icon-social google">Google+</a></li>{% endif %}
-                </ul>
-            </nav><!-- social links 
-        {% endif %}
-        
-        
-         --><div>
-                <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
-            </div><!-- copyright -->
+                </nav><!-- social links 
+            {% endif %}
+            
+            
+             --><div>
+                    <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
+                </div><!-- copyright -->
 
-        </div><!-- grid -->
-    </footer><!-- colophon -->
+            </div><!-- grid -->
+        </footer><!-- colophon -->
+    </div><!-- .search -->
 
   {% if settings.enable_product_image_zoom %}
   {{ 'jquery.zoom.js' | asset_url | script_tag }}

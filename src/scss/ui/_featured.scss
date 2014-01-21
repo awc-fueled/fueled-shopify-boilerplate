@@ -37,8 +37,18 @@
         text-align: center;
         font-weight: bold;
         font-size: 1em;
+        transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
+        transition-delay: 0.75s;
 
         // span pesudo element effect
+        &:hover{
+            color: $color-red;
+            text-shadow: 1px 1px 1px $color-white; 
+        }
+        &:active, &:focus {
+            color:$color-blue;
+        }
+
         &::before, &::after {
             width: 45px;
             height: 2px;
@@ -84,7 +94,7 @@
     }
     // image zoom effect
     img { 
-        transition: all 1.5s ease;
+        transition: all 1s ease;
     }
     &:hover img {
         transform:scale(1.5);

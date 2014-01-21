@@ -1,6 +1,5 @@
 
 {% if settings.slide_1 or settings.slide_2 or settings.slide_3 or settings.slide_4 %}
-<!-- Begin slider -->
 <div class="slideshow">
   <div class="flexslider-container">
     <div class="flexslider">
@@ -22,8 +21,7 @@
       <div class="flex-controls"></div>
     </div>
   </div>
-</div>
-<!-- End slider -->
+</div><!-- End slider -->
 {% endif %}
 <section class="featured group">
     <header>
@@ -31,25 +29,25 @@
     </header>
     <div class="grid">
         <article class="col col--4">
-            <a href="#">
+            <a href="{{ settings.featured_1_link }}">
                 <div class="featured__collection">
-                    <img src="{{ 'feature1.jpg' | asset_url }}">
+                    <img src="{{ 'featured_1.jpg' | asset_url }}">
                     <span>Fueled</span>
                 </div>
             </a>
         </article><!--
          --><article class="col col--4">
-         <a href="#">
+         <a href="{{ settings.featured_2_link }}">
                 <div class="featured__collection">
-                    <img src="{{ 'feature2.jpg    ' | asset_url }}">
+                    <img src="{{ 'featured_2.jpg    ' | asset_url }}">
                     <span>Fueled</span>
                 </div>
             </a>
         </article><!--
          --><article class="col col--4">
-         <a href="#">
+         <a href="{{ settings.featured_3_link }}">
                 <div class="featured__collection">
-                    <img src="{{ 'feature3.jpg' | asset_url }}">
+                    <img src="{{ 'featured_3.jpg' | asset_url }}">
                     <span>Fueled</span>
                 </div>
             </a>

@@ -1,0 +1,59 @@
+.search{
+    position:relative;
+}
+.search__form{
+
+}
+.search__close{
+    color: $color-white;
+    cursor: pointer;
+    font-size: 2em;
+    margin: 1em;
+    position: absolute;
+    right: 0;
+    transition: color 0.25s ease;
+    top:0;
+    &:hover, &:focus{
+        color: $color-red;
+    }
+}
+.search__form--pop {
+    background: $color-grey--transparent;
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    div {
+        display: block;
+        position: absolute;
+        text-align: center;
+        top: 5em;
+        width: 100%;
+    }
+    input {
+        outline: none;
+    }
+    input[type="image"]{      
+        margin-right: 1em;
+        vertical-align: middle;
+        width: 45px;
+    }
+    input[type="text"]{
+        border: 11px solid $color-red;
+        padding: 0.5em 1em;
+        transition: all 0.25s ease;
+
+        &:focus{
+            box-shadow: inset 0px 6px 10px $color-red--transparent;
+             
+        }
+    }
+}
+.js--toggle-search{
+}
+.js--toggle-search--close{
+
+}

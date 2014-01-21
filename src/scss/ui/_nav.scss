@@ -15,12 +15,17 @@
         margin:0 0.3em;
         vertical-align: middle;
 
-    &:hover > ul{
-        opacity: 1;
+        &:hover > ul {
+            opacity: 1;
+        }
     }
-  }
+    a {
+        text-transform: uppercase;
+    }
   @include respond-to(60){
-      ul { display: none;}
+      ul { 
+          display: none;
+      }
       li {
           display: block;
           text-align: center;
@@ -32,23 +37,22 @@
    Links
 ====================================== */
 
-.menu__link {     
-        position: relative;
-        color: $color-red;
-        text-transform: uppercase;
+.menu__link {
+        color: $color-red;     
         letter-spacing: 1px;
-
+        position: relative;
+        text-transform: uppercase;
         &::after {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            height: 4px;
             background: $color-red--transparent;
             content: '';
+            height: 4px;
+            left: 0;
             opacity: 0;
+            position: absolute;
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
             transform: translateY(10px);
+            top: 100%;
+            width: 100%;
         }
         &:hover::after,
         &:focus::after {
@@ -58,14 +62,14 @@
 }
 
 .current::after {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 4px;
     background: $color-red--transparent;
     content: '';
+    height: 4px;
+    left: 0;
     opacity: 1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     transform: translateY(1px);
 }
@@ -101,45 +105,20 @@
 
 .menu--primary {
     li > ul {
-        position: absolute;
+        margin: 0;
         opacity: 0;
         padding: 0;
-        margin: 0;
+        position: absolute;
         transition: opacity 0.25s cubic-bezier(#{$bezier-nice});
 
         li {
             display: block;
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
         li a {
             display: inline-block;
-            position: relative;
-
-            &::before, &::after{
-                opacity: 0;
-                position: absolute;
-                transition: opacity 0.3s cubic-bezier(#{$bezier-nice}), transform 0.3s cubic-bezier(#{$bezier-nice});
-            }
-            &::before{
-                content: "<";
-                left: 0;
-                transform: translateX(10px);
-            }
-            &::after{
-                content: ">";
-                right: 0;
-                transform: translateX(-10px);
-            }
-            &:hover::before, {
-                opacity: 1;
-                transform: translateX(-20px) rotate(360deg);
-            }
-            &:hover::after{
-                opacity: 1;
-                transform: translateX(20px) rotate(360deg);
-
-            }
+ 
         }
     }
 }
@@ -161,7 +140,6 @@
 ====================================== */
 
 .menu--secondary {
-    @include background-image(linear-gradient(left, $color-green, $color-blue));
     left:0;
     position: absolute;
     right:0;

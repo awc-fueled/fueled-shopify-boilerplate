@@ -1,10 +1,12 @@
 /* =============================================================================
    Footer
 ========================================================================== */
-footer { margin: 1em 0 0 0; }
 .colophon {
     color:$color-black;
+    margin: 2em 0 0 0;
+    background: $color-grey--light;
 
+    .group { padding: 1em 0 0 0;}
     ul { padding:0; }
 
     @include respond-to(860) {
