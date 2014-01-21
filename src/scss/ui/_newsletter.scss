@@ -1,10 +1,10 @@
 .mc-embedded-subscribe-form{
-    input[type="email"]{
-        width: 50%;
+    input[type="email"]{        
         padding: .75em 1em;
+        width: 50%;
     }
     input[type="submit"]{
-        margin: -7px;
         border: 2px solid transparent;
+        margin: -7px; 
     }
 }

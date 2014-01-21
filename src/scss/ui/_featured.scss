@@ -1,44 +1,43 @@
 .featured {
+    -webkit-backface-visibility: hidden; 
+
     h1{
         font-size:2em;
     }
     a {
-        position: relative;
-        display: inline-block;
-        outline: none;
+        -webkit-backface-visibility: hidden;
         color: #fff;
+        display: inline-block;
+        font-size: 1.35em;
+        outline: none;
+        overflow: hidden;  
+        position: relative;
         text-decoration: none;
         text-transform: uppercase;
         letter-spacing: 1px;
-        font-size: 1.35em;
-        overflow: hidden;
-        -webkit-backface-visibility: hidden; 
-    }
-   -webkit-backface-visibility: hidden; 
+    }  
 }
 
 .featured__collection {
+    -webkit-backface-visibility: hidden; 
     display: inline-block;
-    position: relative;
     line-height: 0;
     overflow: hidden;
-    -webkit-backface-visibility: hidden; 
-
-
+    position: relative;
     span {
-        line-height: 0;
         -webkit-backface-visibility: hidden; 
-        display: block;
-        color: $color-white;
-        position: absolute;
         bottom: 50%;
-        left: 0;
-        right: 0;
-        text-align: center;
+        color: $color-white;
+        display: block;        
         font-weight: bold;
         font-size: 1em;
+        left: 0;
+        line-height: 0;
+        position: absolute;
+        right: 0;
         transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
         transition-delay: 0.75s;
+        text-align: center;
 
         // span pesudo element effect
         &:hover{
@@ -50,25 +49,24 @@
         }
 
         &::before, &::after {
-            width: 45px;
-            height: 2px;
-            opacity: 0;
             background: $color-white;
             content: '';
+            height: 2px;
             opacity: 0;        
             position: absolute;
             transition: all 0.3s ease-in-out;
+            width: 45px;
 
         }
         &::before {
-            top: 0;
-            left: 0;
             transform: rotate(90deg);
             transform-origin: 0 0;
+            left: 0;
+            top: 0;  
         }
         &::after {
-            right: 0;
             bottom: 0;
+            right: 0;
             transform: rotate(90deg);
             transform-origin: 100% 0;
         }
