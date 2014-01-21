@@ -40,13 +40,13 @@
             {% if settings.enable_product_image_zoom %}
             <div class="col col--2">
                 <a href="{{ image | product_img_url: 'original' }}" class="cloud-zoom-gallery" rel="useZoom: 'placeholder', smallImage: '{{ image | product_img_url: 'original' }}', tint: '#ffffff'">
-                    <img src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
+                    <img class="js--toggle-thumbnail" src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
                 </a>
             </div>
             {% else %}
-            <div class="col col--2">
+            <div class="js--toggle-thumbnail col col--2">
                 <a href="{{ image | product_img_url: 'original' }}" data-original-image="{{ image | product_img_url: 'original' }}">
-                    <img src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
+                    <img class="js--toggle-thumbnail" src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
                 </a>
             </div>
             {% endif %}
@@ -69,35 +69,7 @@
         {% assign hide_default_title = true %}
       {% endif %}
             
-        <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
-            <div class="product-options {% if hide_default_title %}no-options {% endif %}">
-                <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
-                    <select id="product-select" name="id">
-                      {% for variant in product.variants %}
-                        <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-                      {% endfor %}
-                    </select>
-                </div>
-
-              {% if settings.display_quantity_dropdown %}
-                <div class="selector-wrapper">
-                    <label>Quantity</label>
-                    <input id="quantity" type="number" name="quantity" value="1" class="tc item-quantity" />
-                </div>
-              {% endif %}
-
-                <div class="purchase-section{% if product.variants.size > 1 %} multiple{% endif %}">
-                    <div class="purchase">
-                      {% unless product.available %}
-                        <p>Sold Out</p>
-                      {% else %}
-                        <input type="submit" id="add-to-cart" class="btn addtocart" name="add" value="Add to cart" />
-                        <div id="cart-animation" style="display:none">1</div>
-                      {% endunless %}
-                    </div>
-                </div>
-            </div>
-        </form><!-- End product options -->
+        {% include 'product-form' %}
 
         <div class="description">
             {{ product.description }}
@@ -141,7 +113,9 @@
       jQuery('#price-preview').text(message);
     }
   };
-  
+
+  //generate selectors
+
   jQuery(document).ready(function($){
     new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
 
@@ -160,6 +134,6 @@
         {% endfor %}
       {% endif %}
     {% endfor %}
-
   });
+
   </script>

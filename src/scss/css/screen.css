@@ -1317,13 +1317,13 @@ img {
   position: absolute;
   right: 0;
   transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
-  transition-delay: 0.75s;
+  transition-delay: 0.25s;
   text-align: center;
 }
 /* line 43, ../ui/_featured.scss */
 .featured__collection span:hover {
   color: #ad0000;
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 2px 2px white;
 }
 /* line 47, ../ui/_featured.scss */
 .featured__collection span:active, .featured__collection span:focus {
@@ -1611,11 +1611,15 @@ img {
   top: 0;
 }
 /* line 16, ../ui/_search.scss */
-.search__close:hover, .search__close:focus {
+.search__close:hover {
   color: #ad0000;
 }
+/* line 19, ../ui/_search.scss */
+.search__close:focus, .search__close:active {
+  color: blue;
+}
 
-/* line 20, ../ui/_search.scss */
+/* line 23, ../ui/_search.scss */
 .search__form--pop {
   background: rgba(209, 199, 199, 0.8);
   bottom: 0;
@@ -1626,32 +1630,34 @@ img {
   top: 0;
   z-index: 3;
 }
-/* line 29, ../ui/_search.scss */
+/* line 32, ../ui/_search.scss */
 .search__form--pop div {
   display: block;
   position: absolute;
   text-align: center;
   top: 5em;
   width: 100%;
+  z-index: 4;
 }
-/* line 36, ../ui/_search.scss */
+/* line 40, ../ui/_search.scss */
 .search__form--pop input {
   outline: none;
 }
-/* line 39, ../ui/_search.scss */
+/* line 43, ../ui/_search.scss */
 .search__form--pop input[type="image"] {
   margin-right: 1em;
   vertical-align: middle;
   width: 45px;
 }
-/* line 44, ../ui/_search.scss */
+/* line 48, ../ui/_search.scss */
 .search__form--pop input[type="text"] {
   border: 11px solid #ad0000;
   padding: 0.5em 1em;
   transition: all 0.25s ease;
 }
-/* line 49, ../ui/_search.scss */
+/* line 53, ../ui/_search.scss */
 .search__form--pop input[type="text"]:focus {
+  border-color: #cc0000;
   box-shadow: inset 0px 6px 10px rgba(107, 0, 0, 0.4);
 }
 

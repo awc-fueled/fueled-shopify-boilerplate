@@ -13,8 +13,11 @@
     right: 0;
     transition: color 0.25s ease;
     top:0;
-    &:hover, &:focus{
+    &:hover{
         color: $color-red;
+    }
+    &:focus, &:active {
+        color: $color-blue;    
     }
 }
 .search__form--pop {
@@ -32,6 +35,7 @@
         text-align: center;
         top: 5em;
         width: 100%;
+        z-index: 4;
     }
     input {
         outline: none;
@@ -47,6 +51,7 @@
         transition: all 0.25s ease;
 
         &:focus{
+            border-color: $color-red--bright;
             box-shadow: inset 0px 6px 10px $color-red--transparent;
              
         }

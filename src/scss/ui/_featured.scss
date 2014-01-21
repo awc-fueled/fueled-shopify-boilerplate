@@ -36,13 +36,13 @@
         position: absolute;
         right: 0;
         transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
-        transition-delay: 0.75s;
+        transition-delay: 0.25s;
         text-align: center;
 
         // span pesudo element effect
         &:hover{
             color: $color-red;
-            text-shadow: 1px 1px 1px $color-white; 
+            text-shadow: 2px 2px $color-white; 
         }
         &:active, &:focus {
             color:$color-blue;
