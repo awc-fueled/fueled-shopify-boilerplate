@@ -19,29 +19,18 @@
         </div><!-- End breadcrumb -->
     {% endif %}
     <!-- Begin product photos -->
-    <article class="col col--8 flexslider">
-       
-
-        <!-- Begin featured image -->
-        <div class="image featured">
-            <img
-                src="{{ product.featured_image | product_img_url: 'original' }}" 
-                alt="{{ product.featured_image.alt | escape }}" />
-     
-        </div><!-- end main product image -->
-
-        {% if product.images.size > 1%}
-        <section class="thumbnails grid">
-            {% for image in product.images %}
-            <div class="col col--2">
-                <img class="js--toggle-thumbnail"
-                    src="{{ image | product_img_url: 'original' }}" 
-                    alt="{{ image.alt | escape }}" />
-            </div>
-            {% endfor %}
-        </section><!-- End thumbnails -->
-        {% endif %}
-      
+    <article class="col col--8 flexslider--product">
+        <ul class="slides">
+            {% if product.images.size > 1%}
+                {% for image in product.images %}
+                <li data-thumb="{{ image | product_img_url: 'original' }}">
+                  <img class="js--toggle-slide"
+                       src="{{ image | product_img_url: 'original' }}" 
+                       alt="{{ image.alt | escape }}" />
+                </li>
+                {% endfor %}
+            {% endif %}
+        </ul><!-- .flexslider .flexslider--prodcut -->
     </article><!-- end product photos
  --><article class="col col--4">
         <header>

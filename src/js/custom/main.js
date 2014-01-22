@@ -1,6 +1,11 @@
 (function() {
   $(window).load(function() {
-    return $('.flexslider').flexslider();
+    $('.flexslider').flexslider();
+    return $('.flexslider--product').flexslider({
+      animation: "slide",
+      controlNav: "thumbnails",
+      slideshow: false
+    });
   });
 
 }).call(this);

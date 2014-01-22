@@ -1661,46 +1661,46 @@ img {
   box-shadow: inset 0px 6px 10px rgba(107, 0, 0, 0.4);
 }
 
-/* line 84, ../ui/_slideshow.scss */
-.flex-container a:active, .flexslider a:active, .flex-container a:focus, .flexslider a:focus {
+/* line 1, ../ui/_slideshow.scss */
+.flex-container a:active, .flexslider a:active, .flexslider--product a:active, .flex-container a:focus, .flexslider a:focus, .flexslider--product a:focus {
   outline: none;
 }
 
-/* line 85, ../ui/_slideshow.scss */
+/* line 2, ../ui/_slideshow.scss */
 .slides, .flex-control-nav, .flex-direction-nav {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* line 86, ../ui/_slideshow.scss */
-.flexslider {
+/* line 3, ../ui/_slideshow.scss */
+.flexslider, .flexslider--product {
   width: 100%;
   margin: 0 0 30px 0;
   padding: 0;
 }
 
-/* line 87, ../ui/_slideshow.scss */
-.flexslider .slides > li {
+/* line 4, ../ui/_slideshow.scss */
+.flexslider .slides > li, .flexslider--product .slides > li {
   display: none;
   -webkit-backface-visibility: hidden;
   margin-bottom: 0px !important;
 }
 
 /* Hide the slides before the JS is loaded. Avoids image jumping */
-/* line 88, ../ui/_slideshow.scss */
-.flexslider .slides img {
+/* line 5, ../ui/_slideshow.scss */
+.flexslider .slides img, .flexslider--product .slides img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
 }
 
-/* line 89, ../ui/_slideshow.scss */
+/* line 6, ../ui/_slideshow.scss */
 .flex-pauseplay span {
   text-transform: capitalize;
 }
 
-/* line 90, ../ui/_slideshow.scss */
+/* line 7, ../ui/_slideshow.scss */
 .slides:after {
   content: ".";
   display: block;
@@ -1710,45 +1710,45 @@ img {
   height: 0;
 }
 
-/* line 91, ../ui/_slideshow.scss */
+/* line 8, ../ui/_slideshow.scss */
 html[xmlns] .slides {
   display: block;
 }
 
-/* line 92, ../ui/_slideshow.scss */
+/* line 9, ../ui/_slideshow.scss */
 * html .slides {
   height: 1%;
 }
 
-/* line 93, ../ui/_slideshow.scss */
+/* line 10, ../ui/_slideshow.scss */
 .no-js .slides > li:first-child {
   display: block;
 }
 
-/* line 94, ../ui/_slideshow.scss */
-.flexslider {
+/* line 11, ../ui/_slideshow.scss */
+.flexslider, .flexslider--product {
   background: #fff;
   position: relative;
   zoom: 1;
 }
 
-/* line 95, ../ui/_slideshow.scss */
-.flexslider .slides {
+/* line 12, ../ui/_slideshow.scss */
+.flexslider .slides, .flexslider--product .slides {
   zoom: 1;
 }
 
-/* line 96, ../ui/_slideshow.scss */
-.flexslider .slides > li {
+/* line 13, ../ui/_slideshow.scss */
+.flexslider .slides > li, .flexslider--product .slides > li {
   position: relative;
 }
 
-/* line 97, ../ui/_slideshow.scss */
+/* line 14, ../ui/_slideshow.scss */
 .flex-container {
   zoom: 1;
   position: relative;
 }
 
-/* line 98, ../ui/_slideshow.scss */
+/* line 15, ../ui/_slideshow.scss */
 .flex-caption {
   background: none;
   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
@@ -1756,7 +1756,7 @@ html[xmlns] .slides {
   zoom: 1;
 }
 
-/* line 100, ../ui/_slideshow.scss */
+/* line 17, ../ui/_slideshow.scss */
 .flex-caption {
   width: 96%;
   padding: 2%;
@@ -1771,18 +1771,18 @@ html[xmlns] .slides {
   line-height: 18px;
 }
 
-/* line 101, ../ui/_slideshow.scss */
+/* line 18, ../ui/_slideshow.scss */
 .flex-direction-nav {
   height: 0;
   display: none;
 }
 
-/* line 102, ../ui/_slideshow.scss */
+/* line 19, ../ui/_slideshow.scss */
 .flex-direction-nav li {
   margin-bottom: 0;
 }
 
-/* line 103, ../ui/_slideshow.scss */
+/* line 20, ../ui/_slideshow.scss */
 .flex-direction-nav li a {
   width: 50px;
   height: 50px;
@@ -1794,7 +1794,7 @@ html[xmlns] .slides {
   text-indent: -999em;
 }
 
-/* line 104, ../ui/_slideshow.scss */
+/* line 21, ../ui/_slideshow.scss */
 .flex-direction-nav li .disabled {
   opacity: .3;
   filter: alpha(opacity=30);
@@ -1807,17 +1807,17 @@ html[xmlns] .slides {
 /* ==|== Slideshow =================
    Pagination
 ====================================== */
-/* line 119, ../ui/_slideshow.scss */
+/* line 36, ../ui/_slideshow.scss */
 .flex-control-nav {
   margin: 0.5em 0 0 0;
   text-align: center;
 }
-/* line 123, ../ui/_slideshow.scss */
+/* line 40, ../ui/_slideshow.scss */
 .flex-control-nav li {
   display: inline-block;
   margin: 0.25em;
 }
-/* line 128, ../ui/_slideshow.scss */
+/* line 45, ../ui/_slideshow.scss */
 .flex-control-nav a {
   background: #d1c7c7;
   border: 2px solid #d1c7c7;
@@ -1828,16 +1828,16 @@ html[xmlns] .slides {
   text-indent: 100%;
   width: 0.75em;
 }
-/* line 138, ../ui/_slideshow.scss */
+/* line 55, ../ui/_slideshow.scss */
 .flex-control-nav a:hover {
   background: transparent;
 }
-/* line 142, ../ui/_slideshow.scss */
+/* line 59, ../ui/_slideshow.scss */
 .flex-control-nav a:active, .flex-control-nav a:focus {
   background: transparent;
   border-color: #ad0000;
 }
-/* line 147, ../ui/_slideshow.scss */
+/* line 64, ../ui/_slideshow.scss */
 .flex-control-nav a.flex-active {
   background: #ad0000;
   border-color: #ad0000;
