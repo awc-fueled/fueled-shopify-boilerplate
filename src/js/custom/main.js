@@ -3,4 +3,8 @@
     return $('.flexslider').flexslider();
   });
 
+  $(function() {
+    return CloudZoom.quickStart();
+  });
+
 }).call(this);

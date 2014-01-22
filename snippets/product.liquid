@@ -23,33 +23,18 @@
       
         <!-- Begin featured image -->
         <div class="image featured">
-            {% if settings.enable_product_image_zoom %}
-            <a href="{{ product.featured_image | product_img_url: 'original' }}" class="cloud-zoom" rel="position: 'inside', showTitle: 'false'" id="placeholder">
+            <a href="{{ product.featured_image | product_img_url: 'original' }}" class="cloudzoom" d="zoom1"
+     data-cloudzoom="zoomImage: '{{ product.featured_image | product_img_url: 'original' }}'">
               <img src="{{ product.featured_image | product_img_url: 'original' }}" alt="{{ product.featured_image.alt | escape }}" />
             </a>
-            {% else %}
-            <a href="{{ product.featured_image | product_img_url: 'original' }}" class="zoom" id="placeholder">
-              <img src="{{ product.featured_image | product_img_url: 'original' }}" alt="{{ product.featured_image.alt | escape }}" />
-            </a>
-            {% endif %}
-        </div><!-- End product image -->
+        </div><!-- end main product image -->
           
         {% if product.images.size > 1%}
         <section class="thumbnails grid">
             {% for image in product.images %}
-            {% if settings.enable_product_image_zoom %}
             <div class="col col--2">
-                <a href="{{ image | product_img_url: 'original' }}" class="cloud-zoom-gallery" rel="useZoom: 'placeholder', smallImage: '{{ image | product_img_url: 'original' }}', tint: '#ffffff'">
-                    <img class="js--toggle-thumbnail" src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
-                </a>
+                <img class="js--toggle-thumbnail cloudzoom-gallery" data-cloudzoom="zoomImage: '{{ image | product_img_url: 'original' }}', tintColor: 'hsl(0,100%,34%)', zoomPosition: 'inside', zoomOffsetX: 0" src="{{ image | product_img_url: 'original' }}" alt="{{ image.alt | escape }}" />
             </div>
-            {% else %}
-            <div class="js--toggle-thumbnail col col--2">
-                <a href="{{ image | product_img_url: 'original' }}" data-original-image="{{ image | product_img_url: 'original' }}">
-                    <img class="js--toggle-thumbnail" src="{{ image | product_img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
-                </a>
-            </div>
-            {% endif %}
             {% endfor %}
         </section><!-- End thumbnails -->
         {% endif %}
@@ -97,7 +82,7 @@
         {{ image | product_img_url: 'original' | img_tag }}
     {% endfor %}
 </div>
-  
+
   <script>
   var selectCallback = function(variant, selector) {
     if (variant && variant.available) {

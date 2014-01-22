@@ -363,6 +363,10 @@ google.maps.event.addDomListener(window, 'load', function() {
     return $('.flexslider').flexslider();
   });
 
+  $(function() {
+    return CloudZoom.quickStart();
+  });
+
 }).call(this);
 
 
@@ -466,9 +470,8 @@ n();return d?d.promise(g):g}})(jQuery);
   $(function() {
     $(document).on("click", ".js--toggle-thumbnail", function(e) {
       var alt, splitAlt, variant, _i, _len, _results;
-      confirm("clicked thumb");
       e.preventDefault();
-      confirm("clicked thumb");
+      $(this).CloudZoom();
       alt = $(this).attr("alt");
       splitAlt = alt.split(",");
       _results = [];
@@ -477,9 +480,9 @@ n();return d?d.promise(g):g}})(jQuery);
         variant = variant.trim();
         _results.push($('.single-option-selector').each(function(_i, _obj) {
           var _this = this;
-          return $(this).find("option").each(function(_ii, _val) {
-            if (variant === $(_valj).val) {
-              return $(_this).val($(_val).val);
+          return $(_obj).find("option").each(function(_ii, _val) {
+            if (variant === $(_val).val()) {
+              return $(_this).val($(_val).val());
             }
           });
         }));
@@ -501,7 +504,8 @@ n();return d?d.promise(g):g}})(jQuery);
         var alt;
         alt = $(_val).attr("alt").split(",");
         if (variant.toString() === alt.toString()) {
-          return alert("match found v = " + variant + "; a = " + alt);
+          alert("match found v = " + variant + "; a = " + alt);
+          return $(this).CloudZoom();
         }
       });
     });
