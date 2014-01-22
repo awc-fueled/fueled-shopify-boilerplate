@@ -62,7 +62,5 @@ geo =
             error: (jqXHR, textStatus, errorThrown) => @.error(jqXHR, textStatus, errorThrown)
  
 $ ->
-    geo.jQueryTesting()
     geo.init()
     
-geo.jQueryTesting()

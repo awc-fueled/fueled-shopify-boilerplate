@@ -4,7 +4,7 @@ $ ->
     $(document).on "click", ".js--toggle-thumbnail", (e) ->
         e.preventDefault()
         # cloudzoom image
-        $(@).CloudZoom();
+        
 
         # extract variant from images alt text
         alt = $(@).attr "alt"
@@ -35,7 +35,7 @@ $ ->
             alt = $(_val).attr("alt").split(",")
             if (variant.toString() is alt.toString()) 
                 alert "match found v = #{variant}; a = #{alt}"
-                $(@).CloudZoom();
+               
         
                 
         

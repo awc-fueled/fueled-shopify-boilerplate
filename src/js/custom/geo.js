@@ -83,10 +83,7 @@
   };
 
   $(function() {
-    geo.jQueryTesting();
     return geo.init();
   });
-
-  geo.jQueryTesting();
 
 }).call(this);

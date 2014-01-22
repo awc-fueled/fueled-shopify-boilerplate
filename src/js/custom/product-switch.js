@@ -3,7 +3,6 @@
     $(document).on("click", ".js--toggle-thumbnail", function(e) {
       var alt, splitAlt, variant, _i, _len, _results;
       e.preventDefault();
-      $(this).CloudZoom();
       alt = $(this).attr("alt");
       splitAlt = alt.split(",");
       _results = [];
@@ -36,8 +35,7 @@
         var alt;
         alt = $(_val).attr("alt").split(",");
         if (variant.toString() === alt.toString()) {
-          alert("match found v = " + variant + "; a = " + alt);
-          return $(this).CloudZoom();
+          return alert("match found v = " + variant + "; a = " + alt);
         }
       });
     });
