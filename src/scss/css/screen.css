@@ -1810,19 +1810,25 @@ html[xmlns] .slides {
 /* line 38, ../ui/_slideshow.scss */
 .flex-control-thumbs li img {
   width: 150px;
+  display: none;
 }
 
-/* line 43, ../ui/_slideshow.scss */
+/* line 44, ../ui/_slideshow.scss */
+.js--toggle-thumbnail--visibility {
+  display: block !important;
+}
+
+/* line 47, ../ui/_slideshow.scss */
 .flex-control-nav {
   margin: 0.5em 0 0 0;
   text-align: center;
 }
-/* line 47, ../ui/_slideshow.scss */
+/* line 51, ../ui/_slideshow.scss */
 .flex-control-nav li {
   display: inline-block;
   margin: 0.25em;
 }
-/* line 52, ../ui/_slideshow.scss */
+/* line 56, ../ui/_slideshow.scss */
 .flex-control-nav a {
   background: #d1c7c7;
   border: 2px solid #d1c7c7;
@@ -1833,16 +1839,16 @@ html[xmlns] .slides {
   text-indent: 100%;
   width: 0.75em;
 }
-/* line 62, ../ui/_slideshow.scss */
+/* line 66, ../ui/_slideshow.scss */
 .flex-control-nav a:hover {
   background: transparent;
 }
-/* line 66, ../ui/_slideshow.scss */
+/* line 70, ../ui/_slideshow.scss */
 .flex-control-nav a:active, .flex-control-nav a:focus {
   background: transparent;
   border-color: #ad0000;
 }
-/* line 71, ../ui/_slideshow.scss */
+/* line 75, ../ui/_slideshow.scss */
 .flex-control-nav a.flex-active {
   background: #ad0000;
   border-color: #ad0000;
@@ -1851,10 +1857,4 @@ html[xmlns] .slides {
 /* line 1, ../ui/_social.scss */
 .social div > div {
   display: inline-block;
-}
-
-/* line 1, ../ui/_thumbnails.scss */
-.thumbnails img {
-  margin: 0.5em 0;
-  vertical-align: top;
 }

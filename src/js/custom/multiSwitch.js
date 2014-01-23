@@ -2,6 +2,12 @@
   var multiSwitch;
 
   multiSwitch = {
+    init: function() {
+      $(".flex-control-thumbs > li > img").each(function(_i, _obj) {
+        return $(_obj).addClass("js--toggle-thumbnail");
+      });
+      return $("#price-preview").text("Select a Product");
+    },
     activateClass: function(that, activeClass) {
       $("." + activeClass).removeClass(activeClass);
       return $(that).parent().addClass(activeClass);
@@ -45,16 +51,52 @@
       var variant,
         _this = this;
       variant = this.variantFromSelect();
-      return $(".js--toggle-slide").each(function(_i, _obj) {
-        var alt;
+      return $(".flexslider--product li:not(.clone) .js--toggle-slide").each(function(_i, _obj) {
+        var a, alt, v, variantCheck, variantCount, variantCurrentlySelected, _j, _k, _len, _len1;
         alt = $(_obj).attr("alt").split(",");
+        if (variant.indexOf(" ") > -1) {
+          variantCurrentlySelected = false;
+          for (_j = 0, _len = alt.length; _j < _len; _j++) {
+            a = alt[_j];
+            variantCheck = 0;
+            variantCount = 0;
+            for (_k = 0, _len1 = variant.length; _k < _len1; _k++) {
+              v = variant[_k];
+              if (v !== " ") {
+                variantCount += 1;
+              }
+              if (a.trim() === (v != null ? v.trim() : void 0)) {
+                variantCheck += 1;
+                if (variantCheck === variantCount) {
+                  variantCurrentlySelected = true;
+                  $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+                }
+              }
+            }
+            if ((alt.indexOf(a) === (alt.length - 1)) && variantCurrentlySelected === false) {
+              $($(".flex-control-thumbs > li > img")[_i]).removeClass("js--toggle-thumbnail--visibility");
+            }
+          }
+        }
         if (variant.toString() === alt.toString()) {
-          alert("match found v = " + variant + "; a = " + alt);
-          return $('.flexslider--product').flexslider(_i);
+          $('.flexslider--product').flexslider(_i);
+          $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
+          return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
         }
       });
     }
   };
+
+  $(window).load(function() {
+    return $('.flexslider--product').flexslider({
+      animation: "slide",
+      controlNav: "thumbnails",
+      slideshow: false,
+      start: function() {
+        return multiSwitch.init();
+      }
+    });
+  });
 
   $(function() {
     $(document).on("click", ".js--toggle-slide", function(e) {

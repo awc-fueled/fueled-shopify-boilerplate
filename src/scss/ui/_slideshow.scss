@@ -37,8 +37,12 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
     li {
         img {
             width: 150px;
+            display: none;
         }
     }   
+}
+.js--toggle-thumbnail--visibility {
+    display: block !important; 
 }
 .flex-control-nav {
     margin: 0.5em 0 0 0;

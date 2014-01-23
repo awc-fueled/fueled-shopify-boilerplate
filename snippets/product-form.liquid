@@ -55,7 +55,7 @@
               }
             } else {
               jQuery('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
-              var message = variant ? "Sold Out" : "Unavailable";
+              var message = variant ? "Sold Out" : "Unavailable in that Variant";
               jQuery('#price-preview').text(message);
             }
             };
@@ -71,7 +71,8 @@
                 {% if variant.available and found_one_in_stock == false %}
                   {% assign found_one_in_stock = true %}
                   {% for option in product.options %}
-                    $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')', $product).val({{ variant.options[forloop.index0] | json }}).trigger('change');
+                  $('.single-option-selector:eq({{ forloop.index0 }})').prepend('<option value="">Please Select</option>').val('').trigger('change');
+                    // $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')', $product).val({{ variant.options[forloop.index0] | json }}).trigger('change');
                   {% endfor %}
                 {% endif %}
               {% endfor %}
