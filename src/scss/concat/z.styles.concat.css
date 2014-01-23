@@ -1846,17 +1846,22 @@ html[xmlns] .slides {
 /* ==|== Slideshow =================
    Pagination
 ====================================== */
-/* line 36, ../ui/_slideshow.scss */
+/* line 38, ../ui/_slideshow.scss */
+.flex-control-thumbs li img {
+  width: 150px;
+}
+
+/* line 43, ../ui/_slideshow.scss */
 .flex-control-nav {
   margin: 0.5em 0 0 0;
   text-align: center;
 }
-/* line 40, ../ui/_slideshow.scss */
+/* line 47, ../ui/_slideshow.scss */
 .flex-control-nav li {
   display: inline-block;
   margin: 0.25em;
 }
-/* line 45, ../ui/_slideshow.scss */
+/* line 52, ../ui/_slideshow.scss */
 .flex-control-nav a {
   background: #d1c7c7;
   border: 2px solid #d1c7c7;
@@ -1867,16 +1872,16 @@ html[xmlns] .slides {
   text-indent: 100%;
   width: 0.75em;
 }
-/* line 55, ../ui/_slideshow.scss */
+/* line 62, ../ui/_slideshow.scss */
 .flex-control-nav a:hover {
   background: transparent;
 }
-/* line 59, ../ui/_slideshow.scss */
+/* line 66, ../ui/_slideshow.scss */
 .flex-control-nav a:active, .flex-control-nav a:focus {
   background: transparent;
   border-color: #ad0000;
 }
-/* line 64, ../ui/_slideshow.scss */
+/* line 71, ../ui/_slideshow.scss */
 .flex-control-nav a.flex-active {
   background: #ad0000;
   border-color: #ad0000;

@@ -19,18 +19,20 @@
         </div><!-- End breadcrumb -->
     {% endif %}
     <!-- Begin product photos -->
-    <article class="col col--8 flexslider--product">
-        <ul class="slides">
-            {% if product.images.size > 1%}
-                {% for image in product.images %}
-                <li data-thumb="{{ image | product_img_url: 'original' }}">
-                  <img class="js--toggle-slide"
-                       src="{{ image | product_img_url: 'original' }}" 
-                       alt="{{ image.alt | escape }}" />
-                </li>
-                {% endfor %}
-            {% endif %}
-        </ul><!-- .flexslider .flexslider--prodcut -->
+    <article class="col col--8">
+        <div class="flexslider--product">
+            <ul class="slides">
+                {% if product.images.size > 1%}
+                    {% for image in product.images %}
+                    <li data-thumb="{{ image | product_img_url: 'original' }}">
+                      <img class="js--toggle-slide"
+                           src="{{ image | product_img_url: 'original' }}" 
+                           alt="{{ image.alt | escape }}" />
+                    </li>
+                    {% endfor %}
+                {% endif %}
+            </ul><!-- .flexslider .flexslider--prodcut -->
+        </div>
     </article><!-- end product photos
  --><article class="col col--4">
         <header>

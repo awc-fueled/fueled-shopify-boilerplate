@@ -2,13 +2,7 @@
   var multiSwitch;
 
   multiSwitch = {
-    init: function() {
-      return $(".flex-control-thumbs > li > img").each(function(_i, _obj) {
-        return $(_obj).addClass("js--toggle-thumbnail");
-      });
-    },
     activateClass: function(that, activeClass) {
-      console.log(that);
       $("." + activeClass).removeClass(activeClass);
       return $(that).parent().addClass(activeClass);
     },
@@ -56,29 +50,24 @@
         alt = $(_obj).attr("alt").split(",");
         if (variant.toString() === alt.toString()) {
           alert("match found v = " + variant + "; a = " + alt);
-          _this.activateClass(_obj, "flex-active-slide");
-          return false;
+          return $('.flexslider--product').flexslider(_i);
         }
       });
     }
   };
 
   $(function() {
-    multiSwitch.init();
     $(document).on("click", ".js--toggle-slide", function(e) {
-      multiSwitch.init();
       e.preventDefault();
       multiSwitch.updateSelect(this);
       return multiSwitch.activateClass(this, "flex-active-slide");
     });
     $(document).on("change", ".single-option-selector", function(e) {
-      multiSwitch.init();
       e.preventDefault();
       return multiSwitch.findVariantFromSelect();
     });
     return $(document).on("click", ".js--toggle-thumbnail", function(e) {
       var src;
-      multiSwitch.init();
       src = $(this).attr("src");
       return $(".js--toggle-slide").each(function(i, obj) {
         if ($(this).attr("src") === src) {

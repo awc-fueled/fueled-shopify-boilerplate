@@ -1,11 +1,6 @@
-#product-switch.coffee
+#multiSwitch.coffee
 multiSwitch =
-    init : ->
-        $( ".flex-control-thumbs > li > img" ).each ( _i, _obj) ->
-            $( _obj ).addClass( "js--toggle-thumbnail" )
-    
     activateClass: ( that, activeClass ) ->
-        console.log(that)
         $( "." + activeClass ).removeClass( activeClass )
         $( that ).parent().addClass( activeClass )
 
@@ -40,27 +35,21 @@ multiSwitch =
             alt = $( _obj ).attr( "alt" ).split( "," )
             if ( variant.toString() is alt.toString() ) 
                 alert "match found v = #{variant}; a = #{alt}"
-                # activate flexslider
-                @.activateClass( _obj, "flex-active-slide" )
-                return false
-
-
+                # activate slide in the flexslider
+                $('.flexslider--product').flexslider( _i ) 
 
 $ ->
-    multiSwitch.init();
-    # productId and productOptions are defined within the template itself out of necessity
-    $(document).on "click", ".js--toggle-slide", ( e )  ->
+    $(document).on "click", ".js--toggle-slide", ( e )  ->     
         e.preventDefault()
         multiSwitch.updateSelect( @ )
         multiSwitch.activateClass( @, "flex-active-slide" )
                    
 
-    $(document).on "change", ".single-option-selector", ( e ) ->
+    $(document).on "change", ".single-option-selector", ( e ) ->     
         e.preventDefault()
-        findVariantFromSelect()    
-        
+        multiSwitch.findVariantFromSelect()        
 
-    $(document).on "click", ".js--toggle-thumbnail", ( e ) ->
+    $(document).on "click", ".js--toggle-thumbnail", ( e ) ->  
         src = $(@).attr( "src" )
         $( ".js--toggle-slide" ).each ( i, obj ) ->
             if $(@).attr( "src" ) == src
