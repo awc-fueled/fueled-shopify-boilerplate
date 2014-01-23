@@ -63,6 +63,7 @@ multiSwitch =
             if ( variant.toString() is alt.toString() ) 
                 # activate slide in the flexslider
                 $('.flexslider--product').flexslider( _i )
+                #can be replaced by activate ish
                 $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility")
                 $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass("js--toggle-thumbnail--visibility")
 
@@ -90,11 +91,15 @@ $ ->
         multiSwitch.findVariantFromSelect()        
 
     $(document).on "click", ".js--toggle-thumbnail", ( e ) ->  
-        src = $(@).attr( "src" )
-        $( ".js--toggle-slide" ).each ( i, obj ) ->
-            if $(@).attr( "src" ) == src
-                multiSwitch.updateSelect( @ )
-                multiSwitch.activateClass( @, "flex-active")
+        src = $( @ ).attr( "src" )
+        $( ".flexslider--product li:not(.clone) .js--toggle-slide" ).each ( _i, _obj ) =>
+            if $( _obj ).attr( "src" ) == src
+                multiSwitch.updateSelect( _obj )
+                multiSwitch.activateClass( _obj, "flex-active" )
+                $( '.js--toggle-thumbnail--visibility' ).removeClass( "js--toggle-thumbnail--visibility")
+                $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass( "js--toggle-thumbnail--visibility" )
+
+
 
 
 

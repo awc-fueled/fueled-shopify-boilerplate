@@ -469,12 +469,15 @@ google.maps.event.addDomListener(window, 'load', function() {
       return multiSwitch.findVariantFromSelect();
     });
     return $(document).on("click", ".js--toggle-thumbnail", function(e) {
-      var src;
+      var src,
+        _this = this;
       src = $(this).attr("src");
-      return $(".js--toggle-slide").each(function(i, obj) {
-        if ($(this).attr("src") === src) {
-          multiSwitch.updateSelect(this);
-          return multiSwitch.activateClass(this, "flex-active");
+      return $(".flexslider--product li:not(.clone) .js--toggle-slide").each(function(_i, _obj) {
+        if ($(_obj).attr("src") === src) {
+          multiSwitch.updateSelect(_obj);
+          multiSwitch.activateClass(_obj, "flex-active");
+          $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
+          return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
         }
       });
     });
