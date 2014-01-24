@@ -359,7 +359,8 @@ google.maps.event.addDomListener(window, 'load', function() {
 }).call(this);
 
 (function() {
-  var multiSwitch;
+  var multiSwitch,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   multiSwitch = {
     init: function() {
@@ -373,13 +374,10 @@ google.maps.event.addDomListener(window, 'load', function() {
       return $(that).parent().addClass(activeClass);
     },
     splitAltText: function(that) {
-      var alt;
-      alt = $(that).attr("alt");
-      return alt.split(",");
+      return ($(that).attr("alt")).split(",");
     },
-    updateSelect: function(that) {
-      var splitAltText, variant, _i, _len, _results;
-      splitAltText = this.splitAltText(that);
+    updateSelect: function(splitAltText) {
+      var variant, _i, _len, _results;
       _results = [];
       for (_i = 0, _len = splitAltText.length; _i < _len; _i++) {
         variant = splitAltText[_i];
@@ -407,41 +405,57 @@ google.maps.event.addDomListener(window, 'load', function() {
       });
       return variant;
     },
+    filterThumbnails: function(alt, variant, _i) {
+      var a, altInVariantCount, indexAlt, v, validVariants, _j, _k, _len, _len1, _results;
+      if (variant.indexOf(" ") > -1) {
+        altInVariantCount = 0;
+        validVariants = [];
+        _results = [];
+        for (indexAlt = _j = 0, _len = alt.length; _j < _len; indexAlt = ++_j) {
+          a = alt[indexAlt];
+          for (_k = 0, _len1 = variant.length; _k < _len1; _k++) {
+            v = variant[_k];
+            if (v !== " ") {
+              if (__indexOf.call(validVariants, v) < 0) {
+                validVariants.push(v);
+              }
+            }
+            if ((v != null ? v.trim() : void 0) === a.trim()) {
+              altInVariantCount += 1;
+            }
+          }
+          if ((indexAlt === (alt.length - 1)) && (altInVariantCount === validVariants.length)) {
+            console.log("on");
+            $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+            altInVariantCount = 0;
+            _results.push(validVariants = []);
+          } else if (indexAlt === (alt.length - 1)) {
+            console.log("off");
+            $($(".flex-control-thumbs > li > img")[_i]).removeClass("js--toggle-thumbnail--visibility");
+            altInVariantCount = 0;
+            _results.push(validVariants = []);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      }
+    },
+    revealThumbnail: function(_i) {
+      $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
+      return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+    },
     findVariantFromSelect: function() {
       var variant,
         _this = this;
       variant = this.variantFromSelect();
       return $(".flexslider--product li:not(.clone) .js--toggle-slide").each(function(_i, _obj) {
-        var a, alt, v, variantCheck, variantCount, variantCurrentlySelected, _j, _k, _len, _len1;
-        alt = $(_obj).attr("alt").split(",");
-        if (variant.indexOf(" ") > -1) {
-          variantCurrentlySelected = false;
-          for (_j = 0, _len = alt.length; _j < _len; _j++) {
-            a = alt[_j];
-            variantCheck = 0;
-            variantCount = 0;
-            for (_k = 0, _len1 = variant.length; _k < _len1; _k++) {
-              v = variant[_k];
-              if (v !== " ") {
-                variantCount += 1;
-              }
-              if (a.trim() === (v != null ? v.trim() : void 0)) {
-                variantCheck += 1;
-                if (variantCheck === variantCount) {
-                  variantCurrentlySelected = true;
-                  $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
-                }
-              }
-            }
-            if ((alt.indexOf(a) === (alt.length - 1)) && variantCurrentlySelected === false) {
-              $($(".flex-control-thumbs > li > img")[_i]).removeClass("js--toggle-thumbnail--visibility");
-            }
-          }
-        }
+        var alt;
+        alt = _this.splitAltText(_obj);
+        _this.filterThumbnails(alt, variant, _i);
         if (variant.toString() === alt.toString()) {
           $('.flexslider--product').flexslider(_i);
-          $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
-          return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+          return _this.revealThumbnail(_i);
         }
       });
     }
@@ -461,8 +475,9 @@ google.maps.event.addDomListener(window, 'load', function() {
   $(function() {
     $(document).on("click", ".js--toggle-slide", function(e) {
       e.preventDefault();
-      multiSwitch.updateSelect(this);
-      return multiSwitch.activateClass(this, "flex-active-slide");
+      multiSwitch.updateSelect(multiSwitch.splitAltText(this));
+      multiSwitch.activateClass(this, "flex-active-slide");
+      return multiSwitch.revealThumbnail($(".flexslider--product").data("flexslider").currentSlide);
     });
     $(document).on("change", ".single-option-selector", function(e) {
       e.preventDefault();
@@ -474,10 +489,9 @@ google.maps.event.addDomListener(window, 'load', function() {
       src = $(this).attr("src");
       return $(".flexslider--product li:not(.clone) .js--toggle-slide").each(function(_i, _obj) {
         if ($(_obj).attr("src") === src) {
-          multiSwitch.updateSelect(_obj);
+          multiSwitch.updateSelect(multiSwitch.splitAltText(_obj));
           multiSwitch.activateClass(_obj, "flex-active");
-          $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
-          return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+          return multiSwitch.revealThumbnail(_i);
         }
       });
     });

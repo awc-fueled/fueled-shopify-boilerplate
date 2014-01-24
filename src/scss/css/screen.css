@@ -1473,14 +1473,14 @@ img {
   opacity: 0;
   position: absolute;
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-  transform: translateY(10px);
+  transform: translateY(20px);
   top: 100%;
   width: 100%;
 }
 /* line 57, ../ui/_nav.scss */
 .menu__link:hover::after, .menu__link:focus::after {
   opacity: 1;
-  transform: translateY(1px);
+  transform: translateY(5px);
 }
 
 /* line 64, ../ui/_nav.scss */
@@ -1771,64 +1771,74 @@ html[xmlns] .slides {
   line-height: 18px;
 }
 
-/* line 18, ../ui/_slideshow.scss */
-.flex-direction-nav {
-  height: 0;
-  display: none;
-}
-
-/* line 19, ../ui/_slideshow.scss */
-.flex-direction-nav li {
-  margin-bottom: 0;
-}
-
-/* line 20, ../ui/_slideshow.scss */
-.flex-direction-nav li a {
-  width: 50px;
-  height: 50px;
-  display: block;
-  background: url('{{ "slider-arrows.png?47334" | asset_url }}') no-repeat;
-  position: absolute;
-  top: 44%;
-  cursor: pointer;
-  text-indent: -999em;
-}
-
-/* line 21, ../ui/_slideshow.scss */
-.flex-direction-nav li .disabled {
-  opacity: .3;
-  filter: alpha(opacity=30);
-  cursor: default;
-}
-
 /* ==|== Slideshow =================
    Flexslider
 ====================================== */
 /* ==|== Slideshow =================
    Pagination
 ====================================== */
-/* line 38, ../ui/_slideshow.scss */
+/* line 35, ../ui/_slideshow.scss */
 .flex-control-thumbs li img {
-  width: 150px;
   display: none;
+  width: 150px;
 }
 
-/* line 44, ../ui/_slideshow.scss */
+/* line 41, ../ui/_slideshow.scss */
 .js--toggle-thumbnail--visibility {
   display: block !important;
 }
 
-/* line 47, ../ui/_slideshow.scss */
+/* line 45, ../ui/_slideshow.scss */
+.flex-direction-nav {
+  height: 0;
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+}
+/* line 49, ../ui/_slideshow.scss */
+.flex-direction-nav li {
+  margin-bottom: 0;
+}
+/* line 51, ../ui/_slideshow.scss */
+.flex-direction-nav li a {
+  cursor: pointer;
+  background: url('{{ "slider-arrows.png?47334" | asset_url }}') no-repeat;
+  display: block;
+  height: 50px;
+  margin: 0 1em;
+  position: absolute;
+  top: 44%;
+  text-indent: -999em;
+  width: 50px;
+}
+/* line 62, ../ui/_slideshow.scss */
+.flex-direction-nav li .disabled {
+  cursor: default;
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+}
+
+/* line 69, ../ui/_slideshow.scss */
+.flex-next {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+/* line 74, ../ui/_slideshow.scss */
+.flexslider--product:hover .flex-direction-nav {
+  opacity: 1;
+}
+
+/* line 78, ../ui/_slideshow.scss */
 .flex-control-nav {
   margin: 0.5em 0 0 0;
   text-align: center;
 }
-/* line 51, ../ui/_slideshow.scss */
+/* line 82, ../ui/_slideshow.scss */
 .flex-control-nav li {
   display: inline-block;
   margin: 0.25em;
 }
-/* line 56, ../ui/_slideshow.scss */
+/* line 87, ../ui/_slideshow.scss */
 .flex-control-nav a {
   background: #d1c7c7;
   border: 2px solid #d1c7c7;
@@ -1839,16 +1849,16 @@ html[xmlns] .slides {
   text-indent: 100%;
   width: 0.75em;
 }
-/* line 66, ../ui/_slideshow.scss */
+/* line 97, ../ui/_slideshow.scss */
 .flex-control-nav a:hover {
   background: transparent;
 }
-/* line 70, ../ui/_slideshow.scss */
+/* line 101, ../ui/_slideshow.scss */
 .flex-control-nav a:active, .flex-control-nav a:focus {
   background: transparent;
   border-color: #ad0000;
 }
-/* line 75, ../ui/_slideshow.scss */
+/* line 106, ../ui/_slideshow.scss */
 .flex-control-nav a.flex-active {
   background: #ad0000;
   border-color: #ad0000;

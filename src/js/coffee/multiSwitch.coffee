@@ -3,19 +3,20 @@ multiSwitch =
     init: ->
         $( ".flex-control-thumbs > li > img" ).each ( _i, _obj) ->
                 $( _obj ).addClass( "js--toggle-thumbnail" )
+        # handles the case, where product is listed as unavailable on
+        # page load when variants have not yet been selected
         $("#price-preview").text("Select a Product")
 
     activateClass: ( that, activeClass ) ->
         $( "." + activeClass ).removeClass( activeClass )
         $( that ).parent().addClass( activeClass )
 
-    splitAltText: ( that ) ->
-        # extract variant from images alt text
-        alt = $( that ).attr "alt"
-        return alt.split( "," )
 
-    updateSelect: ( that ) ->
-        splitAltText = @.splitAltText( that )
+    splitAltText: ( that ) ->
+        # extract the displayed product variant from images alt text
+        return ( $( that ).attr "alt" ).split( "," )
+
+    updateSelect: ( splitAltText ) ->
         # find each selector and match value with alt text variant value
         for variant in splitAltText
             variant = variant.trim()
@@ -23,8 +24,9 @@ multiSwitch =
                 $( _obj ).find( "option" ).each ( _ii, _val ) =>
                     # set selectors to product variant               
                     if variant is $( _val ).val() then $( @ ).val( $( _val ).val() )
+
     variantFromSelect: ->
-        # gets the selected variant proprety from each 
+        # gets the currently selected variant from each 
         # selector, and then builds the product variant string
         variant = []
         $( '.single-option-selector' ).each ( _i, _obj )->
@@ -34,38 +36,53 @@ multiSwitch =
                     variant.push " " + $( _obj ).val()
         return variant
 
+    filterThumbnails: ( alt, variant, _i ) ->
+        # loop through variants associated with the flexslider slides and compare to
+        # current product selection. If  variant of slide = current filter then reveal thumb.  
+        if ( variant.indexOf(" ") > -1 )
+
+            altInVariantCount = 0
+            validVariants = []
+
+            for a, indexAlt in alt
+                for v in variant
+                    if v != " " 
+                        if v not in validVariants then validVariants.push( v )
+
+                    if v?.trim() == a.trim() 
+                        altInVariantCount += 1
+
+                if ( indexAlt is ( alt.length - 1 ) ) and ( altInVariantCount is validVariants.length )
+                    console.log "on"
+                    # reveal thumbnail
+                    $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass( "js--toggle-thumbnail--visibility" )
+                    #reset 
+                    altInVariantCount = 0
+                    validVariants = []
+                else if ( indexAlt is ( alt.length - 1 ) )
+                    console.log "off"
+                    # hide thumbnail
+                    $( $( ".flex-control-thumbs > li > img" )[ _i ] ).removeClass( "js--toggle-thumbnail--visibility" )
+                    altInVariantCount = 0
+                    validVariants = []
+
+    
+    revealThumbnail: ( _i) ->
+        # reveal single thumbnail only
+        $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility")
+        $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass("js--toggle-thumbnail--visibility")  
+
     findVariantFromSelect: ->
         variant = @.variantFromSelect()
-   
-        # find matching variant
+
         $(".flexslider--product li:not(.clone) .js--toggle-slide").each ( _i, _obj ) =>
-            # prep stings to compare
-            alt = $( _obj ).attr( "alt" ).split( "," )
-            #variant = variant.splice?(variant.indexOf(" ", 2))
-            if (variant.indexOf(" ") > -1 )
-                variantCurrentlySelected = off
-                for a in alt
-                    variantCheck = 0
-                    variantCount = 0  
-                    for v in variant
-                        if v != " "
-                            variantCount += 1
-                        if a.trim() == v?.trim()
-                            variantCheck += 1
-                            
-                            if variantCheck is variantCount    
-                                variantCurrentlySelected = on
-                                $( $( ".flex-control-thumbs > li > img" )[_i] ).addClass("js--toggle-thumbnail--visibility")
-                    
-                    if ( alt.indexOf(a) is (alt.length - 1 ) ) and variantCurrentlySelected is off
-                        $( $( ".flex-control-thumbs > li > img" )[_i] ).removeClass("js--toggle-thumbnail--visibility")  
+            alt = @.splitAltText( _obj )
+            @.filterThumbnails( alt, variant, _i )
 
             if ( variant.toString() is alt.toString() ) 
-                # activate slide in the flexslider
                 $('.flexslider--product').flexslider( _i )
-                #can be replaced by activate ish
-                $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility")
-                $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass("js--toggle-thumbnail--visibility")
+                @.revealThumbnail( _i )
+                
 
     
 
@@ -82,8 +99,9 @@ $( window ).load ->
 $ ->
     $(document).on "click", ".js--toggle-slide", ( e )  ->     
         e.preventDefault()
-        multiSwitch.updateSelect( @ )
+        multiSwitch.updateSelect( multiSwitch.splitAltText( @ ) )
         multiSwitch.activateClass( @, "flex-active-slide" )
+        multiSwitch.revealThumbnail( $(".flexslider--product").data("flexslider").currentSlide )
                    
 
     $(document).on "change", ".single-option-selector", ( e ) ->     
@@ -94,10 +112,9 @@ $ ->
         src = $( @ ).attr( "src" )
         $( ".flexslider--product li:not(.clone) .js--toggle-slide" ).each ( _i, _obj ) =>
             if $( _obj ).attr( "src" ) == src
-                multiSwitch.updateSelect( _obj )
+                multiSwitch.updateSelect( multiSwitch.splitAltText( _obj ))
                 multiSwitch.activateClass( _obj, "flex-active" )
-                $( '.js--toggle-thumbnail--visibility' ).removeClass( "js--toggle-thumbnail--visibility")
-                $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass( "js--toggle-thumbnail--visibility" )
+                multiSwitch.revealThumbnail( _i )
 
 
 
