@@ -57,22 +57,33 @@
         &:hover::after,
         &:focus::after {
             opacity: 1;
-            transform: translateY(5px);
+            transform: translateY(1px);
         }
 }
 
-.current::after {
-    background: $color-red--transparent;
-    content: '';
-    height: 4px;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-    transform: translateY(1px);
+.current {
+     
+    &::after {
+        background: $color-red--transparent;
+        content: '';
+        height: 4px;
+        left: 0;
+        opacity: 1;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        transform: translateY(1px);
+    }
+    
+    &.menu__link:hover::after{
+        transform: translateY(5px);
+
+    }
+   
+
 }
+
 
 .js--white {
     .menu--primary {

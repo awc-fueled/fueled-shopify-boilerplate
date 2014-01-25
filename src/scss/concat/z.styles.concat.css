@@ -1506,12 +1506,12 @@ img {
 /* line 57, ../ui/_nav.scss */
 .menu__link:hover::after, .menu__link:focus::after {
   opacity: 1;
-  -webkit-transform: translateY(5px);
-  -ms-transform: translateY(5px);
-  transform: translateY(5px);
+  -webkit-transform: translateY(1px);
+  -ms-transform: translateY(1px);
+  transform: translateY(1px);
 }
 
-/* line 64, ../ui/_nav.scss */
+/* line 66, ../ui/_nav.scss */
 .current::after {
   background: rgba(107, 0, 0, 0.4);
   content: '';
@@ -1527,11 +1527,17 @@ img {
   -ms-transform: translateY(1px);
   transform: translateY(1px);
 }
+/* line 79, ../ui/_nav.scss */
+.current.menu__link:hover::after {
+  -webkit-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+}
 
 /* ==|== Menu =================
    Nested Links
 ====================================== */
-/* line 107, ../ui/_nav.scss */
+/* line 118, ../ui/_nav.scss */
 .menu--primary li > ul {
   margin: 0;
   opacity: 0;
@@ -1540,13 +1546,13 @@ img {
   -webkit-transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
   transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
-/* line 114, ../ui/_nav.scss */
+/* line 125, ../ui/_nav.scss */
 .menu--primary li > ul li {
   display: block;
   margin: 0;
   padding: 0;
 }
-/* line 119, ../ui/_nav.scss */
+/* line 130, ../ui/_nav.scss */
 .menu--primary li > ul li a {
   display: inline-block;
 }
@@ -1554,12 +1560,12 @@ img {
 /* ==|== Menu =================
    Toggle
 ====================================== */
-/* line 130, ../ui/_nav.scss */
+/* line 141, ../ui/_nav.scss */
 .icon__container--menu {
   display: none;
 }
 @media only screen and (max-width: 60em) {
-  /* line 130, ../ui/_nav.scss */
+  /* line 141, ../ui/_nav.scss */
   .icon__container--menu {
     display: block;
   }
@@ -1568,31 +1574,31 @@ img {
 /* ==|== Nav =================
    Secondary
 ====================================== */
-/* line 142, ../ui/_nav.scss */
+/* line 153, ../ui/_nav.scss */
 .menu--secondary {
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 148, ../ui/_nav.scss */
+/* line 159, ../ui/_nav.scss */
 .menu--secondary li {
   display: inline-block;
 }
-/* line 152, ../ui/_nav.scss */
+/* line 163, ../ui/_nav.scss */
 .js--sticky .menu--secondary {
   position: fixed;
   top: 6.8em;
   z-index: 1;
 }
 @media only screen and (max-width: 900em) {
-  /* line 142, ../ui/_nav.scss */
+  /* line 153, ../ui/_nav.scss */
   .menu--secondary {
     visibility: hidden;
   }
 }
 
-/* line 163, ../ui/_nav.scss */
+/* line 174, ../ui/_nav.scss */
 .menu__link--secondary {
   border-width: 0;
   -webkit-box-shadow: 0px 0px rgba(255, 255, 255, 0.29) inset;
@@ -1605,13 +1611,13 @@ img {
   line-height: 1;
   padding: 1.2em;
 }
-/* line 173, ../ui/_nav.scss */
+/* line 184, ../ui/_nav.scss */
 .menu__link--secondary.js--active, .menu__link--secondary:hover {
   -webkit-box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
   box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
   color: white;
 }
-/* line 179, ../ui/_nav.scss */
+/* line 190, ../ui/_nav.scss */
 .menu__link--secondary:active, .menu__link--secondary:focus {
   -webkit-box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
   box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
