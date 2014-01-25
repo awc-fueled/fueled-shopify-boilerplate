@@ -382,11 +382,11 @@ google.maps.event.addDomListener(window, 'load', function() {
       for (_i = 0, _len = splitAltText.length; _i < _len; _i++) {
         variant = splitAltText[_i];
         variant = variant.trim();
-        _results.push($('.single-option-selector').each(function(_i, _obj) {
+        _results.push($('.single-option-selector').each(function(_i, _selector) {
           var _this = this;
-          return $(_obj).find("option").each(function(_ii, _val) {
-            if (variant === $(_val).val()) {
-              return $(_this).val($(_val).val());
+          return $(_selector).find("option").each(function(_ii, _option) {
+            if (variant === $(_option).val()) {
+              return $(_selector).val($(_option).val());
             }
           });
         }));
@@ -410,27 +410,28 @@ google.maps.event.addDomListener(window, 'load', function() {
       if (variant.indexOf(" ") > -1) {
         altInVariantCount = 0;
         validVariants = [];
+        console.log(variant);
         _results = [];
         for (indexAlt = _j = 0, _len = alt.length; _j < _len; indexAlt = ++_j) {
           a = alt[indexAlt];
           for (_k = 0, _len1 = variant.length; _k < _len1; _k++) {
             v = variant[_k];
-            if (v !== " ") {
+            console.log("v: " + v + " ve: " + (v !== (" " || "")));
+            if ((v !== " ") && (v !== "")) {
               if (__indexOf.call(validVariants, v) < 0) {
                 validVariants.push(v);
               }
-            }
-            if ((v != null ? v.trim() : void 0) === a.trim()) {
-              altInVariantCount += 1;
+              if (v.trim() === a.trim()) {
+                altInVariantCount += 1;
+              }
             }
           }
+          console.log("vv#: " + validVariants.length + " aiv: " + altInVariantCount + " vv: " + validVariants);
           if ((indexAlt === (alt.length - 1)) && (altInVariantCount === validVariants.length)) {
-            console.log("on");
             $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
             altInVariantCount = 0;
             _results.push(validVariants = []);
           } else if (indexAlt === (alt.length - 1)) {
-            console.log("off");
             $($(".flex-control-thumbs > li > img")[_i]).removeClass("js--toggle-thumbnail--visibility");
             altInVariantCount = 0;
             _results.push(validVariants = []);

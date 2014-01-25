@@ -41,8 +41,7 @@
 
         // span pesudo element effect
         &:hover{
-            color: $color-red;
-            text-shadow: 2px 2px $color-white; 
+            color: $color-red--bright;
         }
         &:active, &:focus {
             color:$color-blue;

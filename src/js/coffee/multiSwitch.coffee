@@ -13,17 +13,17 @@ multiSwitch =
 
 
     splitAltText: ( that ) ->
-        # extract the displayed product variant from images alt text
+        # extract the product variant from images alt text
         return ( $( that ).attr "alt" ).split( "," )
 
     updateSelect: ( splitAltText ) ->
         # find each selector and match value with alt text variant value
         for variant in splitAltText
             variant = variant.trim()
-            $( '.single-option-selector' ).each ( _i, _obj ) ->
-                $( _obj ).find( "option" ).each ( _ii, _val ) =>
+            $( '.single-option-selector' ).each ( _i, _selector ) ->
+                $( _selector ).find( "option" ).each ( _ii, _option ) =>
                     # set selectors to product variant               
-                    if variant is $( _val ).val() then $( @ ).val( $( _val ).val() )
+                    if variant is $( _option ).val() then $( _selector ).val( $( _option ).val() )
 
     variantFromSelect: ->
         # gets the currently selected variant from each 
@@ -44,23 +44,25 @@ multiSwitch =
             altInVariantCount = 0
             validVariants = []
 
+            console.log variant
             for a, indexAlt in alt
                 for v in variant
-                    if v != " " 
+                    console.log ("v: #{v} ve: #{ (v != ( " " or "" )) }")
+                    if ( v != " " ) and ( v != "" )
+
                         if v not in validVariants then validVariants.push( v )
 
-                    if v?.trim() == a.trim() 
-                        altInVariantCount += 1
+                        if v.trim() == a.trim() 
+                            altInVariantCount += 1
 
+                console.log("vv#: #{validVariants.length} aiv: #{altInVariantCount} vv: #{validVariants}")
                 if ( indexAlt is ( alt.length - 1 ) ) and ( altInVariantCount is validVariants.length )
-                    console.log "on"
                     # reveal thumbnail
                     $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass( "js--toggle-thumbnail--visibility" )
                     #reset 
                     altInVariantCount = 0
                     validVariants = []
                 else if ( indexAlt is ( alt.length - 1 ) )
-                    console.log "off"
                     # hide thumbnail
                     $( $( ".flex-control-thumbs > li > img" )[ _i ] ).removeClass( "js--toggle-thumbnail--visibility" )
                     altInVariantCount = 0

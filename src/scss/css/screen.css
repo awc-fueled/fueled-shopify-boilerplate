@@ -1322,14 +1322,13 @@ img {
 }
 /* line 43, ../ui/_featured.scss */
 .featured__collection span:hover {
-  color: #ad0000;
-  text-shadow: 2px 2px white;
+  color: #cc0000;
 }
-/* line 47, ../ui/_featured.scss */
+/* line 46, ../ui/_featured.scss */
 .featured__collection span:active, .featured__collection span:focus {
   color: blue;
 }
-/* line 51, ../ui/_featured.scss */
+/* line 50, ../ui/_featured.scss */
 .featured__collection span::before, .featured__collection span::after {
   background: white;
   content: '';
@@ -1339,39 +1338,39 @@ img {
   transition: all 0.3s ease-in-out;
   width: 45px;
 }
-/* line 61, ../ui/_featured.scss */
+/* line 60, ../ui/_featured.scss */
 .featured__collection span::before {
   transform: rotate(90deg);
   transform-origin: 0 0;
   left: 0;
   top: 0;
 }
-/* line 67, ../ui/_featured.scss */
+/* line 66, ../ui/_featured.scss */
 .featured__collection span::after {
   bottom: 0;
   right: 0;
   transform: rotate(90deg);
   transform-origin: 100% 0;
 }
-/* line 74, ../ui/_featured.scss */
+/* line 73, ../ui/_featured.scss */
 .featured__collection span:hover::before, .featured__collection span:hover::after, .featured__collection span:focus::before, .featured__collection span:focus::after {
   opacity: 1;
 }
-/* line 81, ../ui/_featured.scss */
+/* line 80, ../ui/_featured.scss */
 .featured__collection span:hover::before, .featured__collection span:focus::before {
   left: 50%;
   transform: rotate(0deg) translateX(-50%) translateY(25px);
 }
-/* line 87, ../ui/_featured.scss */
+/* line 86, ../ui/_featured.scss */
 .featured__collection span:hover::after, .featured__collection span:focus::after {
   right: 50%;
   transform: rotate(0deg) translateX(50%) translateY(-25px);
 }
-/* line 94, ../ui/_featured.scss */
+/* line 93, ../ui/_featured.scss */
 .featured__collection img {
   transition: all 1s ease;
 }
-/* line 97, ../ui/_featured.scss */
+/* line 96, ../ui/_featured.scss */
 .featured__collection:hover img {
   transform: scale(1.5);
 }
@@ -1585,10 +1584,16 @@ img {
 
 /* line 2, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="email"] {
+  outline: none;
   padding: .75em 1em;
   width: 50%;
 }
-/* line 6, ../ui/_newsletter.scss */
+/* line 7, ../ui/_newsletter.scss */
+.mc-embedded-subscribe-form input[type="email"]:hover, .mc-embedded-subscribe-form input[type="email"]:focus {
+  box-shadow: inset 0px 3px 1px #baabab;
+  border: 2px solid #ededed;
+}
+/* line 13, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="submit"] {
   border: 2px solid transparent;
   margin: -7px;
@@ -1867,4 +1872,9 @@ html[xmlns] .slides {
 /* line 1, ../ui/_social.scss */
 .social div > div {
   display: inline-block;
+}
+
+/* line 1, ../ui/_translate.scss */
+#google_translate_element {
+  text-align: center;
 }
