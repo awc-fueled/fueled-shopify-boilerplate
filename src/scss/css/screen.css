@@ -1667,7 +1667,7 @@ img {
 /* line 55, ../ui/_search.scss */
 .search__form--pop input[type="text"]:focus {
   border-color: #cc0000;
-  box-shadow: inset 0px 6px 10px rgba(107, 0, 0, 0.4);
+  box-shadow: inset 0px 3px 2px rgba(107, 0, 0, 0.4);
 }
 
 /* line 1, ../ui/_slideshow.scss */

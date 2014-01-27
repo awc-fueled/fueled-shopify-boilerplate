@@ -9,7 +9,7 @@
 {% if product.available %}
   <form action="/cart/add" method="post" class="clearfix product_form" data-money-format="{{ shop.money_format }}" data-option-index="{{ option_index }}" id="product-form-{{ product.id }}">
     {% if product.options.size > 1 %}
-      <div class="select">
+      <div class="select grid">
         <select id="product-select-{{ product.id }}" name='id'>
           {% for variant in product.variants %}
             <option value="{{ variant.id }}">{{ variant.title }}</option>
@@ -17,9 +17,9 @@
         </select>
       </div>
     {% elsif product.options.size == 1 and (product.variants.size > 1 or product.options[0] != "Title") %}
-      <div class="select">
-        <label>{{ product.options[0] }}:</label>
-        <select id="product-select-{{ product.id }}" name='id'>
+      <div class="select grid">
+        <label class="col col--6">{{ product.options[0] }}:</label>
+        <select class="col col--6" id="product-select-{{ product.id }}" name='id'>
           {% for variant in product.variants %}
             <option value="{{ variant.id }}">{{ variant.title }}</option>
           {% endfor %}
