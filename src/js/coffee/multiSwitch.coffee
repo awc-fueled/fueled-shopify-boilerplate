@@ -39,21 +39,22 @@ multiSwitch =
     filterThumbnails: ( alt, variant, _i ) ->
         # loop through variants associated with the flexslider slides and compare to
         # current product selection. If  variant of slide = current filter then reveal thumb.  
-        if ( variant.indexOf(" ") > -1 )
+        if ( variant.indexOf(" ") > -1 ) or ( variant.indexOf("") > -1 )
 
             altInVariantCount = 0
             validVariants = []
 
             console.log variant
             for a, indexAlt in alt
-                for v in variant
-                    console.log ("v: #{v} ve: #{ (v != ( " " or "" )) }")
-                    if ( v != " " ) and ( v != "" )
+                v = variant[ indexAlt ]
+                
+                console.log ("v: #{v} ve: #{ (v != ( " " or "" )) }")
+                if ( v != " " ) and ( v != "" )
 
-                        if v not in validVariants then validVariants.push( v )
+                    if v not in validVariants then validVariants.push( v )
 
-                        if v.trim() == a.trim() 
-                            altInVariantCount += 1
+                    if v.trim() == a.trim() 
+                        altInVariantCount += 1
 
                 console.log("vv#: #{validVariants.length} aiv: #{altInVariantCount} vv: #{validVariants}")
                 if ( indexAlt is ( alt.length - 1 ) ) and ( altInVariantCount is validVariants.length )
@@ -117,13 +118,3 @@ $ ->
                 multiSwitch.updateSelect( multiSwitch.splitAltText( _obj ))
                 multiSwitch.activateClass( _obj, "flex-active" )
                 multiSwitch.revealThumbnail( _i )
-
-
-
-
-
-
-               
-        
-                
-        

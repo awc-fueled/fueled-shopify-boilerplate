@@ -46,24 +46,22 @@
       return variant;
     },
     filterThumbnails: function(alt, variant, _i) {
-      var a, altInVariantCount, indexAlt, v, validVariants, _j, _k, _len, _len1, _results;
-      if (variant.indexOf(" ") > -1) {
+      var a, altInVariantCount, indexAlt, v, validVariants, _j, _len, _results;
+      if ((variant.indexOf(" ") > -1) || (variant.indexOf("") > -1)) {
         altInVariantCount = 0;
         validVariants = [];
         console.log(variant);
         _results = [];
         for (indexAlt = _j = 0, _len = alt.length; _j < _len; indexAlt = ++_j) {
           a = alt[indexAlt];
-          for (_k = 0, _len1 = variant.length; _k < _len1; _k++) {
-            v = variant[_k];
-            console.log("v: " + v + " ve: " + (v !== (" " || "")));
-            if ((v !== " ") && (v !== "")) {
-              if (__indexOf.call(validVariants, v) < 0) {
-                validVariants.push(v);
-              }
-              if (v.trim() === a.trim()) {
-                altInVariantCount += 1;
-              }
+          v = variant[indexAlt];
+          console.log("v: " + v + " ve: " + (v !== (" " || "")));
+          if ((v !== " ") && (v !== "")) {
+            if (__indexOf.call(validVariants, v) < 0) {
+              validVariants.push(v);
+            }
+            if (v.trim() === a.trim()) {
+              altInVariantCount += 1;
             }
           }
           console.log("vv#: " + validVariants.length + " aiv: " + altInVariantCount + " vv: " + validVariants);
