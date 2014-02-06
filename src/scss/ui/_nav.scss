@@ -4,12 +4,24 @@
 .masthead{
     background: $color-white;
     width: 100%;
-    @include respond-to(60)
+    .right {
+        @include respond-to(60){
+            clear: both;
+            width: 100%;
+        }
+    }
+
 }
 
 
 .menu--primary {
     margin: 3.65em 0 0 0;
+
+    @include respond-to(60){
+        margin: 0;
+        width: 100%;
+        clear: both; 
+    }
     li {
         display: inline-block;
         margin:0 0.3em;
@@ -18,19 +30,22 @@
         &:hover > ul {
             opacity: 1;
         }
+        @include respond-to(60){
+            display: block;
+            text-align: center;
+        }
     }
+
     a {
         text-transform: uppercase;
     }
-  @include respond-to(60){
-      ul { 
-          display: none;
-      }
-      li {
-          display: block;
-          text-align: center;
-      }
-  }
+ 
+    ul { 
+        @include respond-to(60){
+            display: block;
+            float: none;
+        }
+    }
 }
 
 /* ==|== Menu =================
