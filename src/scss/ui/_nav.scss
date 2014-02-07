@@ -18,34 +18,42 @@
     margin: 3.65em 0 0 0;
 
     @include respond-to(60){
+        clear: both; 
         margin: 0;
         width: 100%;
-        clear: both; 
+        
+    }
+    ul { 
+        @include respond-to(60){
+            display: none;
+            float: none;
+        }
     }
     li {
         display: inline-block;
         margin:0 0.3em;
         vertical-align: middle;
+        @include respond-to(60){
+            display: block;
+            text-align: center;
+            margin: 1em; 
+        }
 
         &:hover > ul {
             opacity: 1;
         }
-        @include respond-to(60){
-            display: block;
-            text-align: center;
-        }
+        
     }
 
     a {
         text-transform: uppercase;
     }
- 
-    ul { 
+    a.btn{
         @include respond-to(60){
-            display: block;
-            float: none;
+
         }
     }
+    
 }
 
 /* ==|== Menu =================

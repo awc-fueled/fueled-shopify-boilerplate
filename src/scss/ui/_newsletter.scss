@@ -1,17 +1,25 @@
 .mc-embedded-subscribe-form{
     input[type="email"]{
+        border: 2px solid black;
         outline: none;        
         padding: .75em 1em;
         width: 50%;
-
         &:hover, &:focus{
            box-shadow: inset 0px 3px 1px darken($color-grey, 10%);
-           border: 2px solid hsl(0, 0%, 93%);
+           border: 2px solid black;
+           
         }
     }
 
     input[type="submit"]{
         border: 2px solid transparent;
-        margin: -7px; 
+        margin: -6px; 
+    }
+    input[type=email],
+    input[type=submit],{
+        @include respond-to(80){
+            width: 100%;
+            margin: 0;
+        }
     }
 }

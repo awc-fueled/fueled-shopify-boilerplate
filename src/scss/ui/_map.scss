@@ -1,0 +1,16 @@
+#panel {
+    @include respond-to(30){
+        clear: both; 
+        height: 250px;
+        text-align: center;
+        width: 100%;  
+    }
+}
+
+#map-canvas {
+    @include respond-to(30){
+        display: block;
+        height: 250px;
+        width: 100%;
+    }
+}

@@ -1188,6 +1188,11 @@ img {
   margin-right: 0.5em;
 }
 
+/* line 1, ../modules/_select.scss */
+.product_form .selector-wrapper label {
+  width: 50%;
+}
+
 /* =============================================================================
    Icons
 ========================================================================== */
@@ -1196,7 +1201,8 @@ img {
 ====================================== */
 /* line 9, ../modules/_icons.scss */
 .icon--menu {
-  border-color: white;
+  cursor: pointer;
+  border-color: blue;
   border-style: solid;
   border-width: 2px 0;
   display: block;
@@ -1208,7 +1214,7 @@ img {
   transition: all 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
   width: 24px;
 }
-/* line 19, ../modules/_icons.scss */
+/* line 20, ../modules/_icons.scss */
 .icon--menu:before {
   border-color: inherit;
   border-style: solid;
@@ -1221,39 +1227,22 @@ img {
   right: 0;
   top: 50%;
 }
-/* line 32, ../modules/_icons.scss */
-.js--sticky .icon--menu {
-  border-color: blue;
-}
-@media only screen and (max-width: 900em) {
+@media only screen and (max-width: 60em) {
   /* line 9, ../modules/_icons.scss */
   .icon--menu {
-    border-color: blue;
+    position: absolute;
+    top: 6.5em;
+    right: 1.25em;
   }
 }
 
-/* line 41, ../modules/_icons.scss */
-.js--toggle-menu {
-  cursor: pointer;
-  padding: 14px 10px;
-}
-
-/* line 46, ../modules/_icons.scss */
+/* line 45, ../modules/_icons.scss */
 .js--visible .icon--menu {
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
-}
-
-/* line 53, ../modules/_icons.scss */
-.no-touch .js--toggle-menu:hover .icon--menu {
-  border-color: blue;
-}
-/* line 59, ../modules/_icons.scss */
-.no-touch .js--toggle-menu:active .icon--menu, .no-touch .js--toggle-menu:focus .icon--menu {
-  border-color: lime;
 }
 
 /* line 2, ../ui/_cart.scss */
@@ -1391,29 +1380,13 @@ img {
   color: #1b1b1b;
   margin: 2em 0 0 0;
 }
-/* line 10, ../ui/_footer.scss */
+/* line 9, ../ui/_footer.scss */
 .colophon .group {
   padding: 1em 0 0 0;
 }
-/* line 11, ../ui/_footer.scss */
+/* line 12, ../ui/_footer.scss */
 .colophon ul {
   padding: 0;
-}
-@media only screen and (max-width: 860em) {
-  /* line 14, ../ui/_footer.scss */
-  .colophon .left,
-  .colophon .right {
-    float: none;
-    text-align: center;
-    width: 100%;
-  }
-}
-@media only screen and (max-width: 600em) {
-  /* line 23, ../ui/_footer.scss */
-  .colophon li {
-    display: block;
-    margin: 0;
-  }
 }
 
 /* line 1, ../ui/_logo.scss */
@@ -1444,51 +1417,52 @@ img {
 @media only screen and (max-width: 60em) {
   /* line 17, ../ui/_nav.scss */
   .menu--primary {
+    clear: both;
     margin: 0;
     width: 100%;
-    clear: both;
   }
 }
-/* line 25, ../ui/_nav.scss */
+@media only screen and (max-width: 60em) {
+  /* line 26, ../ui/_nav.scss */
+  .menu--primary ul {
+    display: none;
+    float: none;
+  }
+}
+/* line 32, ../ui/_nav.scss */
 .menu--primary li {
   display: inline-block;
   margin: 0 0.3em;
   vertical-align: middle;
 }
-/* line 30, ../ui/_nav.scss */
-.menu--primary li:hover > ul {
-  opacity: 1;
-}
 @media only screen and (max-width: 60em) {
-  /* line 25, ../ui/_nav.scss */
+  /* line 32, ../ui/_nav.scss */
   .menu--primary li {
     display: block;
     text-align: center;
+    margin: 1em;
   }
 }
-/* line 39, ../ui/_nav.scss */
+/* line 42, ../ui/_nav.scss */
+.menu--primary li:hover > ul {
+  opacity: 1;
+}
+/* line 48, ../ui/_nav.scss */
 .menu--primary a {
   text-transform: uppercase;
-}
-@media only screen and (max-width: 60em) {
-  /* line 43, ../ui/_nav.scss */
-  .menu--primary ul {
-    display: block;
-    float: none;
-  }
 }
 
 /* ==|== Menu =================
    Links
 ====================================== */
-/* line 55, ../ui/_nav.scss */
+/* line 63, ../ui/_nav.scss */
 .menu__link {
   color: #ad0000;
   letter-spacing: 1px;
   position: relative;
   text-transform: uppercase;
 }
-/* line 60, ../ui/_nav.scss */
+/* line 68, ../ui/_nav.scss */
 .menu__link::after {
   background: rgba(107, 0, 0, 0.4);
   content: '';
@@ -1501,13 +1475,13 @@ img {
   top: 100%;
   width: 100%;
 }
-/* line 72, ../ui/_nav.scss */
+/* line 80, ../ui/_nav.scss */
 .menu__link:hover::after, .menu__link:focus::after {
   opacity: 1;
   transform: translateY(1px);
 }
 
-/* line 81, ../ui/_nav.scss */
+/* line 89, ../ui/_nav.scss */
 .current::after {
   background: rgba(107, 0, 0, 0.4);
   content: '';
@@ -1520,7 +1494,7 @@ img {
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
   transform: translateY(1px);
 }
-/* line 94, ../ui/_nav.scss */
+/* line 102, ../ui/_nav.scss */
 .current.menu__link:hover::after {
   transform: translateY(5px);
 }
@@ -1528,7 +1502,7 @@ img {
 /* ==|== Menu =================
    Nested Links
 ====================================== */
-/* line 133, ../ui/_nav.scss */
+/* line 141, ../ui/_nav.scss */
 .menu--primary li > ul {
   margin: 0;
   opacity: 0;
@@ -1536,13 +1510,13 @@ img {
   position: absolute;
   transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
-/* line 140, ../ui/_nav.scss */
+/* line 148, ../ui/_nav.scss */
 .menu--primary li > ul li {
   display: block;
   margin: 0;
   padding: 0;
 }
-/* line 145, ../ui/_nav.scss */
+/* line 153, ../ui/_nav.scss */
 .menu--primary li > ul li a {
   display: inline-block;
 }
@@ -1550,12 +1524,12 @@ img {
 /* ==|== Menu =================
    Toggle
 ====================================== */
-/* line 156, ../ui/_nav.scss */
+/* line 164, ../ui/_nav.scss */
 .icon__container--menu {
   display: none;
 }
 @media only screen and (max-width: 60em) {
-  /* line 156, ../ui/_nav.scss */
+  /* line 164, ../ui/_nav.scss */
   .icon__container--menu {
     display: block;
   }
@@ -1564,31 +1538,31 @@ img {
 /* ==|== Nav =================
    Secondary
 ====================================== */
-/* line 168, ../ui/_nav.scss */
+/* line 176, ../ui/_nav.scss */
 .menu--secondary {
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 174, ../ui/_nav.scss */
+/* line 182, ../ui/_nav.scss */
 .menu--secondary li {
   display: inline-block;
 }
-/* line 178, ../ui/_nav.scss */
+/* line 186, ../ui/_nav.scss */
 .js--sticky .menu--secondary {
   position: fixed;
   top: 6.8em;
   z-index: 1;
 }
 @media only screen and (max-width: 900em) {
-  /* line 168, ../ui/_nav.scss */
+  /* line 176, ../ui/_nav.scss */
   .menu--secondary {
     visibility: hidden;
   }
 }
 
-/* line 189, ../ui/_nav.scss */
+/* line 197, ../ui/_nav.scss */
 .menu__link--secondary {
   border-width: 0;
   box-shadow: 0px 0px rgba(255, 255, 255, 0.29) inset;
@@ -1600,12 +1574,12 @@ img {
   line-height: 1;
   padding: 1.2em;
 }
-/* line 199, ../ui/_nav.scss */
+/* line 207, ../ui/_nav.scss */
 .menu__link--secondary.js--active, .menu__link--secondary:hover {
   box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
   color: white;
 }
-/* line 205, ../ui/_nav.scss */
+/* line 213, ../ui/_nav.scss */
 .menu__link--secondary:active, .menu__link--secondary:focus {
   box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
   color: white;
@@ -1613,6 +1587,7 @@ img {
 
 /* line 2, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="email"] {
+  border: 2px solid black;
   outline: none;
   padding: .75em 1em;
   width: 50%;
@@ -1620,12 +1595,39 @@ img {
 /* line 7, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="email"]:hover, .mc-embedded-subscribe-form input[type="email"]:focus {
   box-shadow: inset 0px 3px 1px #baabab;
-  border: 2px solid #ededed;
+  border: 2px solid black;
 }
-/* line 13, ../ui/_newsletter.scss */
+/* line 14, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="submit"] {
   border: 2px solid transparent;
-  margin: -7px;
+  margin: -6px;
+}
+@media only screen and (max-width: 80em) {
+  /* line 18, ../ui/_newsletter.scss */
+  .mc-embedded-subscribe-form input[type=email],
+  .mc-embedded-subscribe-form input[type=submit] {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 30em) {
+  /* line 1, ../ui/_map.scss */
+  #panel {
+    clear: both;
+    height: 250px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 30em) {
+  /* line 10, ../ui/_map.scss */
+  #map-canvas {
+    display: block;
+    height: 250px;
+    width: 100%;
+  }
 }
 
 /* line 1, ../ui/_search.scss */

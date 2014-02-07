@@ -12,15 +12,15 @@ Standard theme revamped from the ground up with new features and an efficient de
 ### To Do:
 
 - [ ] Implement gears, a blank custom django app to increase the flexiablity of the shopify platform, ( I've already made it. )
-- [ ] Hack google translate so that we can specify the language from the Geolocation script, and dont have too see that ugly bar.
-- [ ] create alt text thumbnail parser 
+- [x] create alt text thumbnail parser 
 - [ ] Sass up flexslider css
-- [ ] make everything responsive
+- [x] make everything responsive
+- [ ] change product responsive layout to a better UX
 - [ ] add click anywhere exit to search bar
 - [ ] opacity change transition for search bar
 - [ ] add icons to social nav
 - [ ] article template needs to be redone, if we ever plan to use it 
 - [ ] check html for semantic improvements
 
-Version 0.3.0 
+Version 0.4.0 
 Last updated: 1.27.14
