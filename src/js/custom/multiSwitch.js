@@ -46,12 +46,11 @@
       return variant;
     },
     filterThumbnails: function(alt, variant, _i) {
-      var a, altInVariantCount, indexAlt, v, validVariants, _j, _len, _results;
+      var a, altInVariantCount, indexAlt, v, validVariants, _j, _len;
       if ((variant.indexOf(" ") > -1) || (variant.indexOf("") > -1)) {
         altInVariantCount = 0;
         validVariants = [];
         console.log(variant);
-        _results = [];
         for (indexAlt = _j = 0, _len = alt.length; _j < _len; indexAlt = ++_j) {
           a = alt[indexAlt];
           v = variant[indexAlt];
@@ -68,21 +67,20 @@
           if ((indexAlt === (alt.length - 1)) && (altInVariantCount === validVariants.length)) {
             $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
             altInVariantCount = 0;
-            _results.push(validVariants = []);
+            validVariants = [];
           } else if (indexAlt === (alt.length - 1)) {
             $($(".flex-control-thumbs > li > img")[_i]).removeClass("js--toggle-thumbnail--visibility");
             altInVariantCount = 0;
-            _results.push(validVariants = []);
-          } else {
-            _results.push(void 0);
+            validVariants = [];
           }
         }
-        return _results;
+        return $(".flex-control-thumbs li:not(:has(.js--toggle-thumbnail--visibility))").toggle();
       }
     },
     revealThumbnail: function(_i) {
       $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility");
-      return $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+      $($(".flex-control-thumbs > li > img")[_i]).addClass("js--toggle-thumbnail--visibility");
+      return $(".flex-control-thumbs li:not(:has(.js--toggle-thumbnail--visibility))").toggle();
     },
     findVariantFromSelect: function() {
       var variant,

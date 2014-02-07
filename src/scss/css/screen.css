@@ -1202,7 +1202,7 @@ img {
 /* line 9, ../modules/_icons.scss */
 .icon--menu {
   cursor: pointer;
-  border-color: blue;
+  border-color: #ad0000;
   border-style: solid;
   border-width: 2px 0;
   display: block;
@@ -1227,6 +1227,14 @@ img {
   right: 0;
   top: 50%;
 }
+/* line 32, ../modules/_icons.scss */
+.icon--menu:hover, .icon--menu:focus {
+  border-color: blue;
+}
+/* line 36, ../modules/_icons.scss */
+.icon--menu:active {
+  border-color: lime;
+}
 @media only screen and (max-width: 60em) {
   /* line 9, ../modules/_icons.scss */
   .icon--menu {
@@ -1236,12 +1244,8 @@ img {
   }
 }
 
-/* line 45, ../modules/_icons.scss */
-.js--visible .icon--menu {
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
+/* line 52, ../modules/_icons.scss */
+.js--toggle-menu--rotate {
   transform: rotate(90deg);
 }
 
@@ -1434,22 +1438,26 @@ img {
   display: inline-block;
   margin: 0 0.3em;
   vertical-align: middle;
+  transition: all 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
 @media only screen and (max-width: 60em) {
   /* line 32, ../ui/_nav.scss */
   .menu--primary li {
     display: block;
+    font-size: 25px;
+    font-size: 1.25rem;
     text-align: center;
-    margin: 1em;
+    padding: 0.25em;
+  }
+  /* line 43, ../ui/_nav.scss */
+  .menu--primary li:hover, .menu--primary li:focus, .menu--primary li:active {
+    background: #f2f2f2;
+    box-shadow: inset 0px 2px 1px #d1c7c7;
   }
 }
-/* line 42, ../ui/_nav.scss */
+/* line 51, ../ui/_nav.scss */
 .menu--primary li:hover > ul {
   opacity: 1;
-}
-/* line 48, ../ui/_nav.scss */
-.menu--primary a {
-  text-transform: uppercase;
 }
 
 /* ==|== Menu =================
@@ -1475,13 +1483,19 @@ img {
   top: 100%;
   width: 100%;
 }
-/* line 80, ../ui/_nav.scss */
+@media only screen and (max-width: 60em) {
+  /* line 68, ../ui/_nav.scss */
+  .menu__link::after {
+    content: none;
+  }
+}
+/* line 83, ../ui/_nav.scss */
 .menu__link:hover::after, .menu__link:focus::after {
   opacity: 1;
   transform: translateY(1px);
 }
 
-/* line 89, ../ui/_nav.scss */
+/* line 92, ../ui/_nav.scss */
 .current::after {
   background: rgba(107, 0, 0, 0.4);
   content: '';
@@ -1494,7 +1508,13 @@ img {
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
   transform: translateY(1px);
 }
-/* line 102, ../ui/_nav.scss */
+@media only screen and (max-width: 60em) {
+  /* line 92, ../ui/_nav.scss */
+  .current::after {
+    content: none;
+  }
+}
+/* line 108, ../ui/_nav.scss */
 .current.menu__link:hover::after {
   transform: translateY(5px);
 }
@@ -1502,7 +1522,7 @@ img {
 /* ==|== Menu =================
    Nested Links
 ====================================== */
-/* line 141, ../ui/_nav.scss */
+/* line 120, ../ui/_nav.scss */
 .menu--primary li > ul {
   margin: 0;
   opacity: 0;
@@ -1510,13 +1530,13 @@ img {
   position: absolute;
   transition: opacity 0.25s cubic-bezier(0.625, 0.125, 0.305, 0.875);
 }
-/* line 148, ../ui/_nav.scss */
+/* line 127, ../ui/_nav.scss */
 .menu--primary li > ul li {
   display: block;
   margin: 0;
   padding: 0;
 }
-/* line 153, ../ui/_nav.scss */
+/* line 132, ../ui/_nav.scss */
 .menu--primary li > ul li a {
   display: inline-block;
 }
@@ -1524,70 +1544,20 @@ img {
 /* ==|== Menu =================
    Toggle
 ====================================== */
-/* line 164, ../ui/_nav.scss */
+/* line 143, ../ui/_nav.scss */
 .icon__container--menu {
   display: none;
 }
 @media only screen and (max-width: 60em) {
-  /* line 164, ../ui/_nav.scss */
+  /* line 143, ../ui/_nav.scss */
   .icon__container--menu {
     display: block;
   }
 }
 
-/* ==|== Nav =================
-   Secondary
-====================================== */
-/* line 176, ../ui/_nav.scss */
-.menu--secondary {
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-/* line 182, ../ui/_nav.scss */
-.menu--secondary li {
-  display: inline-block;
-}
-/* line 186, ../ui/_nav.scss */
-.js--sticky .menu--secondary {
-  position: fixed;
-  top: 6.8em;
-  z-index: 1;
-}
-@media only screen and (max-width: 900em) {
-  /* line 176, ../ui/_nav.scss */
-  .menu--secondary {
-    visibility: hidden;
-  }
-}
-
-/* line 197, ../ui/_nav.scss */
-.menu__link--secondary {
-  border-width: 0;
-  box-shadow: 0px 0px rgba(255, 255, 255, 0.29) inset;
-  color: white;
-  display: block;
-  font-size: 25px;
-  font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 1;
-  padding: 1.2em;
-}
-/* line 207, ../ui/_nav.scss */
-.menu__link--secondary.js--active, .menu__link--secondary:hover {
-  box-shadow: 0px -8px rgba(255, 255, 255, 0.29) inset;
-  color: white;
-}
-/* line 213, ../ui/_nav.scss */
-.menu__link--secondary:active, .menu__link--secondary:focus {
-  box-shadow: 0px -8px rgba(255, 255, 255, 0.75) inset;
-  color: white;
-}
-
 /* line 2, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="email"] {
-  border: 2px solid black;
+  border: 2px solid gray;
   outline: none;
   padding: .75em 1em;
   width: 50%;
@@ -1600,7 +1570,7 @@ img {
 /* line 14, ../ui/_newsletter.scss */
 .mc-embedded-subscribe-form input[type="submit"] {
   border: 2px solid transparent;
-  margin: -6px;
+  margin: -8px;
 }
 @media only screen and (max-width: 80em) {
   /* line 18, ../ui/_newsletter.scss */
@@ -1626,6 +1596,24 @@ img {
   #map-canvas {
     display: block;
     height: 250px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 60em) {
+  /* line 3, ../ui/_product.scss */
+  .product .col {
+    text-align: center;
+  }
+  /* line 7, ../ui/_product.scss */
+  .product .col .description {
+    text-align: left;
+  }
+}
+@media only screen and (max-width: 60em) {
+  /* line 12, ../ui/_product.scss */
+  .product .col--4,
+  .product .col--8 {
     width: 100%;
   }
 }

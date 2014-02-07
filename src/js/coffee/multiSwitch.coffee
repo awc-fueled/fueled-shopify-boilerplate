@@ -69,11 +69,15 @@ multiSwitch =
                     altInVariantCount = 0
                     validVariants = []
 
+            # hide the li's of the unmatched thumbnails
+            $(".flex-control-thumbs li:not(:has(.js--toggle-thumbnail--visibility))").toggle()
+
     
     revealThumbnail: ( _i) ->
         # reveal single thumbnail only
         $('.js--toggle-thumbnail--visibility').removeClass("js--toggle-thumbnail--visibility")
-        $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass("js--toggle-thumbnail--visibility")  
+        $( $( ".flex-control-thumbs > li > img" )[ _i ] ).addClass("js--toggle-thumbnail--visibility")
+        $(".flex-control-thumbs li:not(:has(.js--toggle-thumbnail--visibility))").toggle()  
 
     findVariantFromSelect: ->
         variant = @.variantFromSelect()
@@ -100,18 +104,18 @@ $( window ).load ->
     
 
 $ ->
-    $(document).on "click", ".js--toggle-slide", ( e )  ->     
+    $( document ).on "click", ".js--toggle-slide", ( e )  ->     
         e.preventDefault()
         multiSwitch.updateSelect( multiSwitch.splitAltText( @ ) )
         multiSwitch.activateClass( @, "flex-active-slide" )
         multiSwitch.revealThumbnail( $(".flexslider--product").data("flexslider").currentSlide )
                    
 
-    $(document).on "change", ".single-option-selector", ( e ) ->     
+    $( document ).on "change", ".single-option-selector", ( e ) ->     
         e.preventDefault()
         multiSwitch.findVariantFromSelect()        
 
-    $(document).on "click", ".js--toggle-thumbnail", ( e ) ->  
+    $( document ).on "click", ".js--toggle-thumbnail", ( e ) ->  
         src = $( @ ).attr( "src" )
         $( ".flexslider--product li:not(.clone) .js--toggle-slide" ).each ( _i, _obj ) =>
             if $( _obj ).attr( "src" ) == src

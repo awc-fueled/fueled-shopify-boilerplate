@@ -1,0 +1,18 @@
+.product{
+
+    .col {
+        @include respond-to(60){
+            text-align: center;
+        
+            .description {
+                text-align: left;
+            }
+        }
+    }
+    .col--4,
+    .col--8{
+        @include respond-to(60){
+             width: 100%;
+        }  
+    }
+}

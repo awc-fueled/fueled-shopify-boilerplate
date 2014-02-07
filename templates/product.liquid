@@ -1,1 +1,78 @@
-{% include 'product' %}
+<section class="group grid product {{ product.handle }}">
+  
+    <div class="clearfix">
+    {% if template != 'index' %}
+        <div class="">
+            <div class="breadcrumb clearfix">
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+                <span class="arrow-space">&#62;</span>
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    {% if collection %}
+                        <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title }}</a>
+                    {% else %}
+                        <a href="/collections/all" title="All Products">Products</a>
+                    {% endif %}
+                </span>
+                <span class="arrow-space">&#62;</span>
+                <strong>{{ product.title }}</strong>
+            </div>
+        </div><!-- End breadcrumb -->
+    {% endif %}
+    <!-- Begin product photos -->
+    <article class="col col--8">
+        <div class="flexslider--product">
+            <ul class="slides">
+                {% if product.images.size > 1%}
+                    {% for image in product.images %}
+                    <li data-thumb="{{ image | product_img_url: 'original' }}">
+                      <img class="js--toggle-slide"
+                           src="{{ image | product_img_url: 'original' }}" 
+                           alt="{{ image.alt | escape }}" />
+                    </li>
+                    {% endfor %}
+                {% endif %}
+            </ul><!-- .flexslider .flexslider--prodcut -->
+        </div>
+    </article><!-- end product photos
+ --><article class="col col--4">
+        <header>
+            <h1 class="title">{{ product.title }}</h1>
+        </header> 
+
+      <div class="purchase">
+        <h2 class="price" id="price-preview">{{ product.price_min | money }}{% if product.price_min < product.compare_at_price_min %} <del>{{ product.compare_at_price_min | money }}</del>{% endif %}</h2>
+      </div>
+      
+      {% assign hide_default_title = false %}
+      {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+        {% assign hide_default_title = true %}
+      {% endif %}
+            
+        {% include 'product-form' %}
+
+        <div class="description">
+            {{ product.description }}
+        </div>
+
+     
+        <aside class="social">
+            {% include 'like' %}
+        </aside><!-- End social buttons -->
+      
+    </article>
+    <!-- End description -->
+    <div class="span12"><div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div></div>
+  </div>
+
+    <!-- Begin related product -->
+    {% if settings.show_related_products %}
+        {% include 'related-products' %}
+    {% endif %}
+  
+</section> 
+
+<div style="display:none" id="preloading">
+    {% for image in product.images offset: 1 %}
+        {{ image | product_img_url: 'original' | img_tag }}
+    {% endfor %}
+</div>

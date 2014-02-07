@@ -33,25 +33,25 @@
         display: inline-block;
         margin:0 0.3em;
         vertical-align: middle;
+        transition: all 0.25s cubic-bezier(#{$bezier-nice});
         @include respond-to(60){
             display: block;
+            @include font-size(25);
             text-align: center;
-            margin: 1em; 
+            padding: 0.25em;
+
+            &:hover,
+            &:focus,
+            &:active{
+                background: $color-grey--light;
+                box-shadow: inset 0px 2px 1px $color-grey;
+            }
         }
 
         &:hover > ul {
             opacity: 1;
         }
         
-    }
-
-    a {
-        text-transform: uppercase;
-    }
-    a.btn{
-        @include respond-to(60){
-
-        }
     }
     
 }
@@ -76,6 +76,9 @@
             transform: translateY(20px);
             top: 100%;
             width: 100%;
+            @include respond-to(60){
+                content: none;
+            }
         }
         &:hover::after,
         &:focus::after {
@@ -97,6 +100,9 @@
         width: 100%;
         transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         transform: translateY(1px);
+        @include respond-to(60){
+                content: none;
+        }
     }
     
     &.menu__link:hover::after{
@@ -105,33 +111,6 @@
     }
    
 
-}
-
-
-.js--white {
-    .menu--primary {
-        .menu__link {
-           
-            &:hover {
-               
-            }
-
-            &:active,
-            &:focus {
-               
-            }
-        }
-        .menu__link--active {
-            
-
-            &:hover,
-            &:active,
-            &:focus {
-               
-
-            }
-        }
-    }
 }
 /* ==|== Menu =================
    Nested Links
@@ -165,54 +144,5 @@
     display: none;
     @include respond-to(60){
         display: block;
-    }
-}
-
-
-/* ==|== Nav =================
-   Secondary
-====================================== */
-
-.menu--secondary {
-    left:0;
-    position: absolute;
-    right:0;
-    top:0;
-
-    li {
-        display: inline-block;
-    }
-
-    .js--sticky & {
-        position: fixed;
-        top:em(136);
-        z-index:1;
-    }
-
-    @include respond-to(900) {
-        visibility: hidden;
-    }
-}
-
-.menu__link--secondary {
-    border-width:0;
-    box-shadow:0px 0px rgba($color-white, 0.29) inset;
-    color:$color-white;
-    display: block;
-    @include font-size(25);
-    font-weight:300;
-    line-height:1;
-    padding:em(30, 25);
-
-    &.js--active,
-    &:hover {
-        box-shadow:0px -8px rgba($color-white, 0.29) inset;
-        color:$color-white;
-    }
-
-    &:active,
-    &:focus {
-        box-shadow:0px -8px rgba($color-white, 0.75) inset;
-        color:$color-white;
     }
 }
